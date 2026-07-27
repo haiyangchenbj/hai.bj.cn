@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<title>论文影响力地图 · 第一阶段回顾</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;font-size:15px;line-height:1.8;color:#333;background:#fafaf8;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+.hero{padding:48px 20px 40px;text-align:center;background:linear-gradient(180deg,#f4f3ef 0%,#fafaf8 100%);border-bottom:1px solid #e8e6e0}
+.hero h1{font-size:24px;font-weight:700;color:#1a3a5c;letter-spacing:.5px;margin-bottom:8px}
+.hero .sub{font-size:14px;color:#888;margin-bottom:6px}
+.hero .meta{font-size:12px;color:#aaa;margin-top:12px}
+.threads{max-width:640px;margin:24px auto 0;display:flex;justify-content:center;gap:16px;flex-wrap:wrap}
+.thread-tag{font-size:12px;padding:4px 14px;border-radius:20px;border:1px solid #d0ccc4;color:#666;background:#fff;cursor:default}
+.thread-tag.cost{border-color:#c96f53;color:#c96f53}
+.thread-tag.know{border-color:#5a7a9a;color:#5a7a9a}
+.thread-tag.eval{border-color:#9a7a5a;color:#9a7a5a}
+.container{max-width:680px;margin:0 auto;padding:0 20px 60px}
+.timeline{position:relative;padding:32px 0 0}
+.timeline::before{content:"";position:absolute;left:20px;top:0;bottom:0;width:1px;background:#d0ccc4}
+.issue{position:relative;padding:0 0 40px 48px}
+.issue:last-child{padding-bottom:0}
+.dot{position:absolute;left:14px;top:6px;width:13px;height:13px;border-radius:50%;background:#1a3a5c;border:3px solid #fafaf8;z-index:1}
+.issue-num{font-size:11px;font-weight:700;color:#1a3a5c;letter-spacing:1px;margin-bottom:2px}
+.issue-title{font-size:17px;font-weight:700;color:#1a3a5c;line-height:1.5;margin-bottom:4px}
+.issue-sub{font-size:13px;color:#777;margin-bottom:10px}
+.issue-papers{font-size:13px;color:#555;line-height:1.7;padding:10px 14px;background:#f4f3ef;border-radius:8px;border-left:3px solid #1a3a5c;margin-bottom:8px}
+.issue-insight{font-size:14px;color:#444;line-height:1.7;padding:8px 0}
+.issue-insight strong{color:#1a3a5c;font-weight:600}
+.issue-link{display:inline-block;font-size:12px;color:#c96f53;margin-top:6px;border-bottom:1px solid #e0d0c8;padding-bottom:1px;transition:all .2s}
+.issue-link:hover{color:#a04a30;border-color:#c96f53}
+.issue-link.none{color:#aaa;border-color:#e0e0e0;cursor:default}
+.issue-threads{margin-top:6px;display:flex;gap:8px;flex-wrap:wrap}
+.issue-threads span{font-size:11px;padding:2px 10px;border-radius:12px;border:1px solid #d0ccc4;color:#666}
+.cross-section{max-width:680px;margin:48px auto 0;padding:0 20px}
+.cross-section h2{font-size:18px;font-weight:700;color:#1a3a5c;padding-bottom:10px;border-bottom:2px solid #1a3a5c;margin-bottom:24px}
+.cross-card{padding:20px;border-radius:10px;border:1px solid #e0dcd4;margin-bottom:16px;background:#fff}
+.cross-card h3{font-size:15px;font-weight:700;margin-bottom:8px}
+.cross-card p{font-size:14px;color:#555;line-height:1.75}
+.cross-card .cc-tag{display:inline-block;font-size:11px;padding:2px 10px;border-radius:12px;margin-bottom:8px}
+.cc-cost{border:1px solid #c96f53;color:#c96f53}
+.cc-know{border:1px solid #5a7a9a;color:#5a7a9a}
+.cc-eval{border:1px solid #9a7a5a;color:#9a7a5a}
+.phase2{max-width:680px;margin:48px auto 0;padding:0 20px}
+.phase2 h2{font-size:18px;font-weight:700;color:#1a3a5c;padding-bottom:10px;border-bottom:2px solid #d0ccc4;margin-bottom:20px}
+.phase2-items{display:grid;grid-template-columns:1fr;gap:12px}
+.phase2-item{padding:14px 16px;border:1px dashed #c0bcb4;border-radius:8px;font-size:14px;color:#555;line-height:1.7}
+.phase2-item strong{color:#333}
+.footer{max-width:680px;margin:48px auto 0;padding:0 20px 40px;text-align:center;font-size:12px;color:#aaa}
+.footer a{color:#888;border-bottom:1px solid #ddd}
+.footer a:hover{color:#1a3a5c}
+@media(min-width:600px){
+  .hero{padding:60px 40px 50px}
+  .hero h1{font-size:28px}
+  .container{padding:0 32px 80px}
+  .timeline::before{left:24px}
+  .issue{padding-left:56px}
+  .dot{left:17.5px}
+}
+@media(prefers-color-scheme:dark){
+  body{color:#ddd;background:#181a1b}
+  .hero{background:linear-gradient(180deg,#1e2022 0%,#181a1b 100%);border-color:#2a2d30}
+  .hero h1{color:#a0c4e0}
+  .hero .sub{color:#888}
+  .hero .meta{color:#666}
+  .thread-tag{border-color:#444;color:#999;background:#222}
+  .timeline::before{background:#333}
+  .dot{background:#a0c4e0;border-color:#181a1b}
+  .issue-num{color:#a0c4e0}
+  .issue-title{color:#a0c4e0}
+  .issue-sub{color:#777}
+  .issue-papers{color:#aaa;background:#1e2022;border-color:#a0c4e0}
+  .issue-insight{color:#bbb}
+  .issue-insight strong{color:#a0c4e0}
+  .cross-card{background:#1e2022;border-color:#333}
+  .cross-card h3{color:#ccc}
+  .cross-card p{color:#999}
+  .cross-section h2{color:#a0c4e0;border-color:#a0c4e0}
+  .phase2 h2{color:#a0c4e0;border-color:#333}
+  .phase2-item{border-color:#333;color:#999}
+  .phase2-item strong{color:#bbb}
+  .footer{color:#666}
+  .footer a{color:#777;border-color:#333}
+  .issue-link.none{color:#555;border-color:#333}
+}
+</style>
+</head>
+<body>
+<div class="hero">
+  <h1>论文影响力地图</h1>
+  <div class="sub">第一阶段 · 2017–2024 初</div>
+  <div style="font-size:14px;color:#555;max-width:480px;margin:14px auto 0;line-height:1.75">ChatGPT 为什么能对话、为什么会胡说、为什么要联网、为什么能看图——这些事背后都有具体的来路。七期，按拐点串起来。</div>
+  <div class="threads">
+    <span class="thread-tag cost">成本结构</span>
+    <span class="thread-tag know">知识边界</span>
+    <span class="thread-tag eval">评估体系</span>
+  </div>
+  <div class="meta">边界层 · 算法&amp;论文 &nbsp;|&nbsp; 科里 Coralyx · 2026</div>
+</div>
+
+<div class="container">
+<div class="timeline">
+
+<div class="issue">
+  <div class="dot"></div>
+  <div class="issue-num">第 1 期 · 2017–2020</div>
+  <div class="issue-title">三块地基：Transformer、BERT、GPT-3</div>
+  <div class="issue-sub">结构可规模化 · 预训练成为默认 · Prompt 作为接口</div>
+  <div class="issue-papers"><em>Attention Is All You Need</em> — Vaswani et al., 2017<br><em>BERT</em> — Devlin et al., 2018<br><em>GPT-3</em> — Brown et al., 2020</div>
+  <div class="issue-insight"><strong>没有这三块地基，后面所有事都不成立。</strong> Transformer 让规模化在结构上可行；BERT 确立了"预训练→微调"范式；GPT-3 用 prompt 把接口变成了产品形态。</div>
+  <a class="issue-link none" href="javascript:void(0)">文章链接：待补充</a>
+</div>
+
+<div class="issue">
+  <div class="dot"></div>
+  <div class="issue-num">第 2 期 · 2020–2022</div>
+  <div class="issue-title">规模化为什么有效，边际在哪里</div>
+  <div class="issue-sub">Scaling Laws · Chinchilla · MoE</div>
+  <div class="issue-papers"><em>Scaling Laws for Neural Language Models</em> — Kaplan et al., 2020<br><em>Training Compute-Optimal LLMs</em> (Chinchilla) — Hoffmann et al., 2022<br><em>Switch Transformer</em> — Fedus et al., 2021</div>
+  <div class="issue-insight">Kaplan 把"做大有用"写成了可量化的公式；Chinchilla 修正了配方，证明同等预算下数据比参数更值钱；MoE 给了一条只激活部分参数的工程路径。<strong>不是"更聪明"推动了行业，是"同样效果更便宜"。</strong></div>
+  <a class="issue-link none" href="javascript:void(0)">文章链接：待补充</a>
+  <div class="issue-threads"><span>成本</span></div>
+</div>
+
+<div class="issue">
+  <div class="dot"></div>
+  <div class="issue-num">第 3 期 · 2020–2023</div>
+  <div class="issue-title">从"会生成"到"可交付"</div>
+  <div class="issue-sub">InstructGPT · Constitutional AI · 红队测试</div>
+  <div class="issue-papers"><em>Training language models to follow instructions</em> (InstructGPT) — Ouyang et al., 2022<br><em>Constitutional AI</em> — Bai et al., 2022<br><em>Red Teaming Language Models</em> — Ganguli et al., 2022</div>
+  <div class="issue-insight">RLHF 让模型听话了，Anthropic 用原则清单给对齐一个可追溯的框架，红队把评估从"打分"推向"找漏洞"。ChatGPT 是这条线的产品化落点。</div>
+  <a class="issue-link none" href="javascript:void(0)">文章链接：待补充</a>
+  <div class="issue-threads"><span>成本</span><span>评估</span></div>
+</div>
+
+<div class="issue">
+  <div class="dot"></div>
+  <div class="issue-num">第 4 期 · 2020–2022</div>
+  <div class="issue-title">知识的边界在哪里</div>
+  <div class="issue-sub">把检索做成模型能力的一部分</div>
+  <div class="issue-papers"><em>REALM</em> — Guu et al., 2020<br><em>RAG</em> — Lewis et al., 2020<br><em>Atlas</em> — Izacard et al., 2022</div>
+  <div class="issue-insight">承认模型参数装不下所有知识之后，整个行业开始学习怎么把检索做成模型能力的一部分。<strong>"知识在哪存"这个问题的答案，从"全塞进参数"转向"模型做中枢、调度外部知识"。</strong></div>
+  <a class="issue-link none" href="javascript:void(0)">文章链接：待补充</a>
+  <div class="issue-threads"><span>知识</span><span>成本</span></div>
+</div>
+
+<div class="issue">
+  <div class="dot"></div>
+  <div class="issue-num">第 5 期 · 2022–2023</div>
+  <div class="issue-title">从说到做：AI 不只是嘴上说说</div>
+  <div class="issue-sub">Chain-of-Thought · Toolformer · ReAct</div>
+  <div class="issue-papers"><em>Chain-of-Thought Prompting</em> — Wei et al., 2022<br><em>Toolformer</em> — Schick et al., 2023<br><em>ReAct</em> — Yao et al., 2022</div>
+  <div class="issue-insight">模型先学会把问题拆开想，再学会自己决定什么时候用工具，最后学会在推理和行动之间来回切换。<strong>Agent 这个词的学术源头就在这一期里。</strong></div>
+  <a class="issue-link none" href="javascript:void(0)">文章链接：待补充</a>
+  <div class="issue-threads"><span>知识</span><span>成本</span></div>
+</div>
+
+<div class="issue">
+  <div class="dot"></div>
+  <div class="issue-num">第 6 期 · 2022–2024 初</div>
+  <div class="issue-title">评估体系如何追上能力</div>
+  <div class="issue-sub">从刷榜到打擂台</div>
+  <div class="issue-papers"><em>MMLU</em> — Hendrycks et al., 2020<br><em>HELM</em> — Liang et al., 2022<br><em>Chatbot Arena</em> — Zheng et al., 2023<br><em>LLM-as-Judge</em> — Zheng et al., 2023</div>
+  <div class="issue-insight">MMLU 在 GPT-4 面前饱和，旧基准集体失效。HELM 把评估展开成多维矩阵；Chatbot Arena 把评估搬到真实用户的持续投票里。<strong>评估这件事没有终点——每次能力跨过一个台阶，旧的尺子就要扔掉。</strong></div>
+  <a class="issue-link none" href="javascript:void(0)">文章链接：待补充</a>
+  <div class="issue-threads"><span>评估</span></div>
+</div>
+
+<div class="issue">
+  <div class="dot"></div>
+  <div class="issue-num">第 7 期 · 2021–2024 初</div>
+  <div class="issue-title">从看字到看懂：多模态的统一</div>
+  <div class="issue-sub">CLIP · Flamingo · GPT-4V</div>
+  <div class="issue-papers"><em>CLIP</em> — Radford et al., 2021<br><em>Flamingo</em> — Alayrac et al., 2022<br><em>BLIP-2</em> — Li et al., 2023 &emsp; <em>LLaVA</em> — Liu et al., 2023</div>
+  <div class="issue-insight">CLIP 证明了自然语言可以当视觉的监督信号；Flamingo 建立"冻结 LLM + 视觉适配层"的工程蓝图；GPT-4V 把多模态做成了对话框左下角那一个小图标。<strong>视觉、语言被放进同一个表征空间，第一阶段最后一块拼图。</strong></div>
+  <a class="issue-link none" href="javascript:void(0)">文章链接：待补充</a>
+  <div class="issue-threads"><span>成本</span></div>
+</div>
+
+</div>
+</div>
+
+<div class="cross-section">
+<h2>贯穿全阶段的三个视角</h2>
+<div class="cross-card">
+  <span class="cc-tag cc-cost">视角一 · 成本结构</span>
+  <h3 style="color:#c96f53">不是"更聪明"推动了行业，是"同样效果更便宜"</h3>
+  <p>从 Chinchilla 修正训练配方、到 Constitutional AI 降标注成本、到 RAG 省下重新训练的钱、到 Toolformer 用外部能力替代参数内能力——每一次主要切换，底下都压着一次成本结构的变化。</p>
+</div>
+<div class="cross-card">
+  <span class="cc-tag cc-know">视角二 · 知识边界</span>
+  <h3 style="color:#5a7a9a">知识从"全塞进参数"转向"模型做中枢、调度外部资源"</h3>
+  <p>GPT-3 那会儿默认把全世界塞进参数里。到 RAG，这个假设被推翻了。再到 Toolformer 和 ReAct，能力也被放到外面去了。模型从封闭生成器变成能调用外部检索、工具、代码的中枢。</p>
+</div>
+<div class="cross-card">
+  <span class="cc-tag cc-eval">视角三 · 评估体系</span>
+  <h3 style="color:#9a7a5a">评估一直在追能力，没有终点</h3>
+  <p>BERT 时代用 GLUE，到 ChatGPT 已经失效；MMLU 在 GPT-4 面前趋于饱和。行业用活的排行榜、人类投票、模型互评重建尺子。但每次能力跨过一个台阶，旧的尺子就要扔掉。</p>
+</div>
+</div>
+
+<div class="phase2">
+<h2>第二阶段 · 方向预告</h2>
+<div class="phase2-items">
+  <div class="phase2-item"><strong>推理范式改写</strong>：o1/R1 之后，"多想一会儿"成为可独立分配算力的动作。</div>
+  <div class="phase2-item"><strong>对齐工程简化</strong>：DPO 系列证明不走 PPO 也能做到 RLHF 效果。</div>
+  <div class="phase2-item"><strong>Agent 从能做到能卖钱</strong>：Coding Agent、Browser Agent、数据分析 Agent。</div>
+  <div class="phase2-item"><strong>开源生态重构</strong>：LLaMA、Mixtral、DeepSeek、Qwen——"开源追得上闭源"已经不是假设。</div>
+  <div class="phase2-item"><strong>数据天花板</strong>：高质量训练数据开始见顶，合成数据从辅助手段变成主要手段。</div>
+</div>
+</div>
+
+<div class="footer">
+  <a href="https://mp.weixin.qq.com" target="_blank" rel="noopener">边界层笔记</a> · 算法&amp;论文合集 &nbsp;|&nbsp; 科里 Coralyx · 2026<br>
+  <span style="font-size:11px">Demis Hassabis: 从现在到 AGI，可能还需要一到两次和 Transformer 同等量级的突破。</span>
+</div>
+</body>
+</html>

@@ -3,84 +3,204 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>hai.bj.cn</title>
+<title>陈海洋 · Haiyang Chen — Data+AI 战略叙事与产品营销</title>
+<meta name="description" content="陈海洋（Benjie）：Data+AI 战略叙事与产品营销专家（Asia → Europe）。把复杂技术翻译成可决策的语言。边界层笔记作者，Data+AI 每日报告主理人。">
 <style>
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-body{
-  font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Helvetica Neue",sans-serif;
-  font-size:16px;line-height:1.7;color:#222;background:#faf9f6;
-  -webkit-font-smoothing:antialiased;
-}
-a{color:inherit;text-decoration:none}
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  :root{
+    --bg:#faf9f6; --card:#ffffff; --ink:#222; --ink-soft:#444;
+    --muted:#8a857c; --line:#e7e3da; --line-soft:#efece5;
+    --navy:#132a40; --navy2:#1a3a5c; --accent:#b85c3c; --accent-soft:#f3ece7;
+  }
+  body{
+    font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Helvetica Neue",sans-serif;
+    font-size:16px;line-height:1.7;color:var(--ink);background:var(--bg);
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:860px;margin:0 auto;padding:0 24px}
 
-.header{padding:72px 24px 0}
-.header h1{font-size:22px;font-weight:700;color:#132a40;letter-spacing:0.3px}
-.header p{margin-top:6px;font-size:14px;color:#888}
+  /* ===== HERO ===== */
+  .hero{padding:72px 24px 40px;border-bottom:1px solid var(--line)}
+  .hero .kicker{font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);font-weight:700}
+  .hero h1{font-size:30px;font-weight:800;color:var(--navy);letter-spacing:.3px;margin:10px 0 4px;line-height:1.25}
+  .hero .en{font-size:14px;color:var(--muted);font-weight:500;margin-bottom:18px}
+  .hero .lede{font-size:17px;color:var(--ink-soft);max-width:640px;line-height:1.8}
+  .hero .lede b{color:var(--navy);font-weight:700}
+  .hero .tags{margin-top:18px;display:flex;gap:8px;flex-wrap:wrap}
+  .tag{font-size:12.5px;padding:5px 13px;border-radius:20px;background:var(--accent-soft);color:var(--accent);font-weight:600}
+  .tag.ghost{background:transparent;border:1px solid var(--line);color:var(--muted)}
 
-.links{max-width:600px;margin:40px auto 0;padding:0 24px 80px}
-.link{
-  display:block;padding:20px 0;border-bottom:1px solid #e0dcd4;
-  transition:all .2s;
-}
-.link:first-child{border-top:1px solid #e0dcd4}
-.link:hover{background:#f4f3ef;padding-left:8px}
+  /* ===== SECTION ===== */
+  section{padding:38px 0;border-bottom:1px solid var(--line)}
+  .sec-head{display:flex;align-items:baseline;gap:12px;margin-bottom:18px}
+  .sec-head h2{font-size:19px;font-weight:800;color:var(--navy)}
+  .sec-head .en{font-size:12px;color:var(--muted);font-weight:500;letter-spacing:.04em}
+  .sec-note{font-size:13.5px;color:var(--muted);margin:-8px 0 18px;line-height:1.7}
 
-.link-name{font-size:17px;font-weight:700;color:#132a40;margin-bottom:2px}
-.link-desc{font-size:14px;color:#777;line-height:1.6}
-.link-url{font-size:12px;color:#b85c3c;margin-top:6px}
+  /* ===== CARD GRID ===== */
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .card{
+    display:block;background:var(--card);border:1px solid var(--line);
+    border-radius:12px;padding:18px 18px;transition:all .18s;
+  }
+  .card:hover{border-color:var(--accent);transform:translateY(-2px);box-shadow:0 6px 18px rgba(19,42,64,.06)}
+  .card .ct{font-size:16px;font-weight:700;color:var(--navy);margin-bottom:4px;display:flex;align-items:center;gap:8px}
+  .card .cd{font-size:13.5px;color:var(--ink-soft);line-height:1.65}
+  .card .cm{font-size:12px;color:var(--accent);margin-top:8px;font-weight:600}
+  .card .ic{font-size:18px}
+  .card.full{grid-column:1 / -1}
 
-.footer{padding:0 24px 48px;text-align:center;font-size:12px;color:#aaa}
-.footer a{color:#888;border-bottom:1px solid #ddd}
-.footer a:hover{color:#132a40}
+  /* ===== ABOUT ===== */
+  .about{background:var(--card);border:1px solid var(--line);border-left:3px solid var(--navy);
+    border-radius:10px;padding:20px 22px;font-size:14.5px;color:var(--ink-soft);line-height:1.85}
+  .about p{margin-bottom:10px}
+  .about p:last-child{margin-bottom:0}
+  .about strong{color:var(--navy)}
+  .skills{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+  .skills span{font-size:12.5px;padding:4px 11px;border-radius:18px;background:var(--line-soft);color:var(--ink-soft)}
+  .stats{display:flex;gap:22px;flex-wrap:wrap;margin-top:16px}
+  .stat .n{font-size:22px;font-weight:800;color:var(--navy);line-height:1.1}
+  .stat .l{font-size:12px;color:var(--muted)}
 
-@media(prefers-color-scheme:dark){
-  body{color:#ddd;background:#181a1b}
-  .header h1{color:#a0c4e0}
-  .link{border-color:#2a2d30}
-  .link:first-child{border-color:#2a2d30}
-  .link:hover{background:#1e2022}
-  .link-name{color:#a0c4e0}
-  .link-desc{color:#999}
-  .link-url{color:#d4846a}
-  .footer a{color:#777;border-color:#333}
-  .footer a:hover{color:#a0c4e0}
-}
+  /* ===== CONNECT ===== */
+  .connect{display:flex;gap:10px;flex-wrap:wrap}
+  .connect a{padding:9px 16px;border-radius:9px;border:1px solid var(--line);font-size:13.5px;font-weight:600;color:var(--navy);transition:all .18s}
+  .connect a:hover{border-color:var(--accent);color:var(--accent);background:var(--accent-soft)}
+
+  footer{padding:32px 24px 56px;text-align:center;font-size:12.5px;color:var(--muted)}
+  footer a{color:var(--ink-soft);border-bottom:1px solid var(--line)}
+
+  @media(max-width:640px){
+    .hero{padding:56px 20px 32px}
+    .hero h1{font-size:25px}
+    .grid{grid-template-columns:1fr}
+    .wrap{padding:0 18px}
+  }
+  @media(prefers-color-scheme:dark){
+    :root{--bg:#181a1b;--card:#1e2022;--ink:#e6e6e6;--ink-soft:#bdbdbd;--muted:#8a857c;
+      --line:#2a2d30;--line-soft:#232629;--navy:#a0c4e0;--navy2:#a0c4e0;--accent:#d4846a;--accent-soft:#2a211c}
+    .card:hover{box-shadow:0 6px 18px rgba(0,0,0,.3)}
+    .about{background:#1e2022}
+    .skills span{background:#232629}
+  }
 </style>
 </head>
 <body>
-<div class="header">
-  <h1>hai.bj.cn</h1>
-  <p>陈海洋 · 个人内容聚合</p>
-</div>
 
-<div class="links">
-  <a class="link" href="https://haiyangchenbj.github.io/personal/">
-    <div class="link-name">个人主页</div>
-    <div class="link-desc">腾讯云大数据产品市场。把复杂技术翻译成可决策的语言。半马 1:38。</div>
-    <div class="link-url">haiyangchenbj.github.io/personal →</div>
-  </a>
+<!-- HERO -->
+<header class="hero">
+  <div class="wrap">
+    <div class="kicker">Data + AI · Product Marketing & Strategic Narrative</div>
+    <h1>陈海洋 · Haiyang Chen</h1>
+    <div class="en">Data+AI 战略叙事与产品营销专家（Asia → Europe）</div>
+    <p class="lede">把复杂的 Data+AI 技术，翻译成可决策的语言。覆盖 <b>技术架构 → 产品能力 → 商业价值 → 行业场景</b> 的完整链路——深耕 阿里云 与 腾讯云 的 Data+AI 产品市场十五年。</p>
+    <div class="tags">
+      <span class="tag">腾讯云 · 大数据产品市场</span>
+      <span class="tag">边界层笔记 主理人</span>
+      <span class="tag ghost">柏林进行中 · 2027</span>
+    </div>
+  </div>
+</header>
 
-  <a class="link" href="/papers/">
-    <div class="link-name">论文影响力地图</div>
-    <div class="link-desc">第一阶段 · 2017–2024 初。AI 走到今天不是凭空发生——七期，按拐点串起来。</div>
-    <div class="link-url">hai.bj.cn/papers →</div>
-  </a>
+<!-- A. DATA+AI 主线 -->
+<section>
+  <div class="wrap">
+    <div class="sec-head"><h2>Data+AI 主线</h2><span class="en">Daily intelligence, refreshed every day</span></div>
+    <p class="sec-note">每天在跑的持续产出——把行业信号压缩成可决策的内容。这是能力最直接的证据。</p>
+    <div class="grid">
+      <a class="card" href="https://haiyangchenbj.github.io/data-ai-daily/">
+        <div class="ct"><span class="ic">📡</span>Data+AI 每日报告</div>
+        <div class="cd">全球 Data+AI 每日简报：技术、产品、厂商、行业动态的结构化日报。</div>
+        <div class="cm">haiyangchenbj.github.io/data-ai-daily →</div>
+      </a>
+      <a class="card" href="https://haiyangchenbj.github.io/data-ai-intel/">
+        <div class="ct"><span class="ic">🧭</span>行业情报参考</div>
+        <div class="cd">Data+AI 行业情报镜像：每日情报、月刊、深度专题的常备参考库。</div>
+        <div class="cm">haiyangchenbj.github.io/data-ai-intel →</div>
+      </a>
+      <a class="card" href="/report/">
+        <div class="ct"><span class="ic">📊</span>专题报告</div>
+        <div class="cd">边界层笔记数据报告与厂商大会深度专题（FFA、阿里云峰会、DAIS、Snowflake Summit 等）。</div>
+        <div class="cm">hai.bj.cn/report →</div>
+      </a>
+      <a class="card" href="/papers/">
+        <div class="ct"><span class="ic">📚</span>论文影响力地图</div>
+        <div class="cd">七期技术演化史：从 Transformer 到多模态，把 AI 的来路按拐点串起来。</div>
+        <div class="cm">hai.bj.cn/papers →</div>
+      </a>
+    </div>
+  </div>
+</section>
 
-  <a class="link" href="https://github.com/haiyangchenbj">
-    <div class="link-name">GitHub</div>
-    <div class="link-desc">Skills、工具、投资系统、日报生成器。</div>
-    <div class="link-url">github.com/haiyangchenbj →</div>
-  </a>
+<!-- B. 写作与思考 -->
+<section>
+  <div class="wrap">
+    <div class="sec-head"><h2>写作与思考</h2><span class="en">The Boundary Layer · 边界层笔记</span></div>
+    <p class="sec-note">个人 IP「边界层笔记 / The Boundary Layer」：在技术和商业的边界，找到清晰。</p>
+    <div class="grid">
+      <a class="card" href="https://mp.weixin.qq.com/mp/profile_ext?action=home&__biz=MzkxMzIxNjczMQ==">
+        <div class="ct"><span class="ic">📮</span>微信公众号</div>
+        <div class="cd">中文内容首发地。给企业决策者的 AI 学习笔记，每周 2 篇。</div>
+        <div class="cm">边界层笔记 →</div>
+      </a>
+      <a class="card" href="https://benjhchen.substack.com">
+        <div class="ct"><span class="ic">✍️</span>Substack</div>
+        <div class="cd">英文深度长文：Data+AI 行业叙事与个人成长观察。</div>
+        <div class="cm">benjhchen.substack.com →</div>
+      </a>
+      <a class="card" href="https://www.linkedin.com/in/chenhaiyang/">
+        <div class="ct"><span class="ic">💼</span>LinkedIn</div>
+        <div class="cd">柏林求职主阵地与职业叙事：产业观察、DAIS 2026 分析、行业判断。</div>
+        <div class="cm">linkedin.com/in/chenhaiyang →</div>
+      </a>
+      <a class="card" href="https://x.com/BenjHChen">
+        <div class="ct"><span class="ic">𝕏</span>X / Twitter</div>
+        <div class="cd">国际技术圈短内容，与 Substack 联动。</div>
+        <div class="cm">x.com/BenjHChen →</div>
+      </a>
+    </div>
+  </div>
+</section>
 
-  <a class="link" href="https://www.linkedin.com/in/chenhaiyang/">
-    <div class="link-name">LinkedIn</div>
-    <div class="link-desc">产业观察、DAIS 2026 分析、职业动态。</div>
-    <div class="link-url">linkedin.com/in/chenhaiyang →</div>
-  </a>
-</div>
+<!-- C. 关于 / 专业定位 -->
+<section>
+  <div class="wrap">
+    <div class="sec-head"><h2>关于 / 专业定位</h2><span class="en">Why me, for Data+AI in Europe</span></div>
+    <div class="about">
+      <p>近 15 年大数据与 AI 产品的市场与品牌经验，近年聚焦 <strong>阿里云 与 腾讯云</strong> 的 Data+AI 产品线，负责品牌策略、产品故事、技术内容、分析师关系与行业传播。</p>
+      <p>在中国最复杂的数据体系里——十亿级用户规模、lakehouse + cloud-native、大型银行/券商数字化转型——做过 Data+AI 的产品叙事。这正是欧洲市场稀缺的履历。</p>
+      <p>核心不是"更聪明"，是"<strong>同样效果更便宜、同样信息更清晰</strong>"。最擅长的，是把工程语言翻译成商业语言，让 C-suite、分析师和生态伙伴在同一张图里对齐。</p>
+      <div class="skills">
+        <span>战略叙事 / 定位</span><span>产品营销 PMM · GTM</span><span>技术内容翻译</span>
+        <span>分析师关系 (IDC/Gartner/信通院)</span><span>行业趋势 (Lakehouse/RAG/Agent)</span><span>中英跨文化转译</span>
+      </div>
+      <div class="stats">
+        <div class="stat"><div class="n">51+</div><div class="l">公众号文章</div></div>
+        <div class="stat"><div class="n">29</div><div class="l">Substack 英文</div></div>
+        <div class="stat"><div class="n">14</div><div class="l">LinkedIn 帖子</div></div>
+        <div class="stat"><div class="n">7</div><div class="l">论文影响力地图</div></div>
+      </div>
+    </div>
+  </div>
+</section>
 
-<div class="footer">
-  <a href="mailto:haiyangchen.bj@gmail.com">haiyangchen.bj@gmail.com</a>
-</div>
+<!-- D. 连接 -->
+<section>
+  <div class="wrap">
+    <div class="sec-head"><h2>连接</h2><span class="en">Find me</span></div>
+    <div class="connect">
+      <a href="https://haiyangchenbj.github.io/personal/">个人主页（深度版）</a>
+      <a href="https://github.com/haiyangchenbj">GitHub</a>
+      <a href="https://www.linkedin.com/in/chenhaiyang/">LinkedIn</a>
+      <a href="mailto:benjie.chen@outlook.com">benjie.chen@outlook.com</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <a href="https://hai.bj.cn/">hai.bj.cn</a> · 陈海洋 / Benjie · 把复杂技术翻译成可决策的语言
+</footer>
+
 </body>
 </html>

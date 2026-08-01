@@ -3,151 +3,171 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>边界层笔记 · 数据报告</title>
-<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<title>专题报告 · 陈海洋 — Data+AI 深度专题与数据报告</title>
+<meta name="description" content="陈海洋（Benjie）的 Data+AI 专题报告集合：厂商大会深度专题（FFA、阿里云峰会、Databricks DAIS、Snowflake Summit）、分析师观点回顾，以及边界层笔记数据报告。">
 <style>
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-body{font-family:"PingFang SC","Microsoft YaHei",sans-serif;font-size:14px;line-height:1.7;color:#333;background:#f8f7f4;-webkit-font-smoothing:antialiased}
-.container{max-width:800px;margin:0 auto;padding:40px 20px 80px}
-h1{font-size:22px;font-weight:700;color:#1a3a5c;margin-bottom:4px}
-.sub{font-size:13px;color:#999;margin-bottom:28px}
-h2{font-size:16px;font-weight:700;color:#1a3a5c;margin-bottom:16px;padding-bottom:8px;border-bottom:2px solid #e0dcd4}
-.cards{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:32px}
-.card{flex:1;min-width:120px;padding:18px 14px;background:#fff;border-radius:8px;border:1px solid #e0dcd4;text-align:center}
-.card-num{font-size:26px;font-weight:700;color:#1a3a5c;line-height:1.2}
-.card-label{font-size:12px;color:#888;margin-top:4px}
-.section{margin-bottom:32px}
-.chart-box{background:#fff;border-radius:8px;border:1px solid #e0dcd4;padding:20px;margin-bottom:16px}
-.chart-box canvas{max-height:280px}
-table{width:100%;border-collapse:collapse;font-size:13px;background:#fff;border-radius:8px;overflow:hidden;border:1px solid #e0dcd4}
-th,td{padding:10px 12px;text-align:left;border-bottom:1px solid #f0ede8}
-th{background:#1a3a5c;color:#fff;font-weight:600;font-size:11px;letter-spacing:.5px}
-tr:last-child td{border-bottom:none}
-tr:hover td{background:#f9f8f5}
-.insight{padding:16px 20px;background:#fff;border-left:4px solid #1a3a5c;border-radius:6px;margin-bottom:12px;font-size:14px;color:#555;line-height:1.75}
-.insight strong{color:#1a3a5c}
-.footer{margin-top:40px;text-align:center;font-size:11px;color:#aaa}
-@media(max-width:600px){.card{min-width:90px;padding:12px 8px}.card-num{font-size:20px}table{font-size:12px}th,td{padding:8px 6px}}
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  :root{
+    --bg:#faf9f6; --card:#ffffff; --ink:#222; --ink-soft:#444;
+    --muted:#8a857c; --line:#e7e3da; --line-soft:#efece5;
+    --navy:#132a40; --navy2:#1a3a5c; --accent:#b85c3c; --accent-soft:#f3ece7;
+  }
+  body{
+    font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Helvetica Neue",sans-serif;
+    font-size:16px;line-height:1.7;color:var(--ink);background:var(--bg);
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:860px;margin:0 auto;padding:0 24px}
+
+  /* ===== HERO ===== */
+  .hero{padding:64px 24px 34px;border-bottom:1px solid var(--line)}
+  .hero .kicker{font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);font-weight:700}
+  .hero h1{font-size:28px;font-weight:800;color:var(--navy);letter-spacing:.3px;margin:10px 0 4px;line-height:1.25}
+  .hero .en{font-size:14px;color:var(--muted);font-weight:500;margin-bottom:14px}
+  .hero .lede{font-size:16px;color:var(--ink-soft);max-width:660px;line-height:1.8}
+  .back{display:inline-block;margin-top:18px;font-size:13px;font-weight:600;color:var(--navy);border:1px solid var(--line);padding:6px 14px;border-radius:8px;transition:all .18s}
+  .back:hover{border-color:var(--accent);color:var(--accent);background:var(--accent-soft)}
+
+  /* ===== SECTION ===== */
+  section{padding:34px 0;border-bottom:1px solid var(--line)}
+  .sec-head{display:flex;align-items:baseline;gap:12px;margin-bottom:6px}
+  .sec-head h2{font-size:19px;font-weight:800;color:var(--navy)}
+  .sec-head .en{font-size:12px;color:var(--muted);font-weight:500;letter-spacing:.04em}
+  .sec-note{font-size:13.5px;color:var(--muted);margin-bottom:18px;line-height:1.7}
+
+  /* ===== CARD LIST ===== */
+  .cards{display:flex;flex-direction:column;gap:14px}
+  .card{
+    display:flex;align-items:flex-start;gap:16px;
+    background:var(--card);border:1px solid var(--line);border-radius:12px;
+    padding:18px 20px;transition:all .18s;
+  }
+  .card:hover{border-color:var(--accent);transform:translateY(-2px);box-shadow:0 6px 18px rgba(19,42,64,.06)}
+  .card .ic{font-size:24px;line-height:1.2;flex:0 0 auto;width:30px;text-align:center}
+  .card .body{flex:1 1 auto}
+  .card .ct{font-size:16.5px;font-weight:700;color:var(--navy);margin-bottom:4px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+  .card .badge{font-size:11px;font-weight:700;padding:2px 9px;border-radius:11px;background:var(--accent-soft);color:var(--accent)}
+  .card .badge.local{background:var(--line-soft);color:var(--ink-soft)}
+  .card .cd{font-size:13.5px;color:var(--ink-soft);line-height:1.7}
+  .card .cm{font-size:12px;color:var(--accent);margin-top:8px;font-weight:600;display:inline-block}
+  .card .ext{margin-left:auto;flex:0 0 auto;font-size:20px;color:var(--muted);align-self:center}
+
+  footer{padding:30px 24px 54px;text-align:center;font-size:12.5px;color:var(--muted)}
+  footer a{color:var(--ink-soft);border-bottom:1px solid var(--line)}
+
+  @media(max-width:640px){
+    .hero{padding:50px 20px 28px}
+    .hero h1{font-size:23px}
+    .card{flex-direction:column;gap:10px}
+    .card .ext{display:none}
+    .wrap{padding:0 18px}
+  }
+  @media(prefers-color-scheme:dark){
+    :root{--bg:#181a1b;--card:#1e2022;--ink:#e6e6e6;--ink-soft:#bdbdbd;--muted:#8a857c;
+      --line:#2a2d30;--line-soft:#232629;--navy:#a0c4e0;--navy2:#a0c4e0;--accent:#d4846a;--accent-soft:#2a211c}
+    .card:hover{box-shadow:0 6px 18px rgba(0,0,0,.3)}
+  }
 </style>
 </head>
 <body>
-<div class="container">
-<h1>边界层笔记 · 数据报告</h1>
-<div class="sub">2026-01-01 ~ 2026-07-29 | hai.bj.cn</div>
 
-<div class="cards">
-  <div class="card"><div class="card-num">507</div><div class="card-label">当前粉丝</div></div>
-  <div class="card"><div class="card-num">+316</div><div class="card-label">7个月净增</div></div>
-  <div class="card"><div class="card-num">7,795</div><div class="card-label">总阅读量</div></div>
-  <div class="card"><div class="card-num">886</div><div class="card-label">总分享</div></div>
-  <div class="card"><div class="card-num">57</div><div class="card-label">发表篇数</div></div>
-</div>
+<!-- HERO -->
+<header class="hero">
+  <div class="wrap">
+    <div class="kicker">Special Reports</div>
+    <h1>专题报告</h1>
+    <div class="en">Deep-dives &amp; data reports — 厂商大会、分析师观点、内容数据</div>
+    <p class="lede">把一场大会、一份报告、一组行业信号，压缩成可决策的视图。这里是边界层笔记的"重武器"区。</p>
+    <a class="back" href="/">← 返回首页</a>
+  </div>
+</header>
 
-<div class="section">
-  <h2>关键发现</h2>
-  <div class="insight"><strong>取关率极低：</strong>7个月仅8人取关（取关率2.5%），内容匹配度极高。</div>
-  <div class="insight"><strong>2篇爆文撑起大半流量：</strong>《AI Agent 如何重塑企业数据平台》（2,205阅读）+《数据平台的下一个十年》（2,025阅读）合计占54.3%，均为推荐流量驱动。</div>
-  <div class="insight"><strong>推荐是主力流量源：</strong>TOP2文章推荐占比50-66%，其他文章主要靠社交分发。冲推荐的关键指标是收藏率（已知TOP1收藏率8.6%）。</div>
-  <div class="insight"><strong>粉丝增长有惯性：</strong>1月底爆文后3月进入稳定增长期，近30天净增+25，日均不到1人但持续为正。</div>
-</div>
+<!-- 厂商大会深度专题 -->
+<section>
+  <div class="wrap">
+    <div class="sec-head"><h2>厂商大会深度专题</h2><span class="en">Conference deep-dives</span></div>
+    <p class="sec-note">一线厂商年度大会的逐场拆解：技术发布、定位变化、产业信号。链接到常备参考库 data-ai-intel。</p>
+    <div class="cards">
 
-<div class="section">
-  <h2>粉丝增长趋势</h2>
-  <div class="chart-box"><canvas id="fanChart"></canvas></div>
-</div>
+      <a class="card" href="https://haiyangchenbj.github.io/data-ai-intel/reports/Databricks_DAIS_2026_%E6%B7%B1%E5%BA%A6%E4%B8%93%E9%A2%98%E6%8A%A5%E5%91%8A.html">
+        <div class="ic">🟣</div>
+        <div class="body">
+          <div class="ct">Databricks Data+AI Summit 2026 <span class="badge">外部</span></div>
+          <div class="cd">DAIS 2026 全景：Lakehouse、Mosaic AI、Agent、开放表格式（Unity Catalog / Delta）的产业信号与腾讯云视角对照。</div>
+          <span class="cm">haiyangchenbj.github.io/data-ai-intel/reports →</span>
+        </div>
+        <div class="ext">↗</div>
+      </a>
 
-<div class="section">
-  <h2>粉丝累积曲线</h2>
-  <div class="chart-box"><canvas id="cumChart"></canvas></div>
-</div>
+      <a class="card" href="https://haiyangchenbj.github.io/data-ai-intel/reports/Snowflake-Summit-2026-%E6%B7%B1%E5%BA%A6%E4%B8%93%E9%A2%98%E6%8A%A5%E5%91%8A.html">
+        <div class="ic">❄️</div>
+        <div class="body">
+          <div class="ct">Snowflake Summit 2026 <span class="badge">外部</span></div>
+          <div class="cd">Snowflake 年度大会 2026 深度专题：Cortex、数据云、AI 功能与多云策略的产业解读。</div>
+          <span class="cm">haiyangchenbj.github.io/data-ai-intel/reports →</span>
+        </div>
+        <div class="ext">↗</div>
+      </a>
 
-<div class="section">
-  <h2>粉丝趋势（近14天）</h2>
-  <table>
-    <tr><th>日期</th><th>新关注</th><th>取关</th><th>净增</th><th>累计</th></tr>
-    <tr><td>2026-07-29</td><td style="color:#137333">+0</td><td style="color:#c5221f">0</td><td style="#137333">+0</td><td>507</td></tr><tr><td>2026-07-28</td><td style="color:#137333">+0</td><td style="color:#c5221f">0</td><td style="#137333">+0</td><td>507</td></tr><tr><td>2026-07-27</td><td style="color:#137333">+0</td><td style="color:#c5221f">0</td><td style="#137333">+0</td><td>507</td></tr><tr><td>2026-07-26</td><td style="color:#137333">+1</td><td style="color:#c5221f">0</td><td style="#137333">+1</td><td>507</td></tr><tr><td>2026-07-25</td><td style="color:#137333">+0</td><td style="color:#c5221f">0</td><td style="#137333">+0</td><td>506</td></tr><tr><td>2026-07-24</td><td style="color:#137333">+1</td><td style="color:#c5221f">1</td><td style="#137333">+0</td><td>506</td></tr><tr><td>2026-07-23</td><td style="color:#137333">+2</td><td style="color:#c5221f">0</td><td style="#137333">+2</td><td>506</td></tr><tr><td>2026-07-22</td><td style="color:#137333">+3</td><td style="color:#c5221f">0</td><td style="#137333">+3</td><td>504</td></tr><tr><td>2026-07-21</td><td style="color:#137333">+4</td><td style="color:#c5221f">0</td><td style="#137333">+4</td><td>501</td></tr><tr><td>2026-07-20</td><td style="color:#137333">+0</td><td style="color:#c5221f">0</td><td style="#137333">+0</td><td>497</td></tr><tr><td>2026-07-19</td><td style="color:#137333">+5</td><td style="color:#c5221f">0</td><td style="#137333">+5</td><td>497</td></tr><tr><td>2026-07-18</td><td style="color:#137333">+2</td><td style="color:#c5221f">0</td><td style="#137333">+2</td><td>492</td></tr><tr><td>2026-07-17</td><td style="color:#137333">+2</td><td style="color:#c5221f">0</td><td style="#137333">+2</td><td>490</td></tr><tr><td>2026-07-16</td><td style="color:#137333">+0</td><td style="color:#c5221f">0</td><td style="#137333">+0</td><td>488</td></tr>
-  </table>
-</div>
+      <a class="card" href="https://haiyangchenbj.github.io/data-ai-intel/reports/2026%E9%98%BF%E9%87%8C%E4%BA%91%E5%B3%B0%E4%BC%9A%E4%B8%93%E9%A2%98_%E8%85%BE%E8%AE%AFData+AI%E8%A7%86%E8%A7%92.html">
+        <div class="ic">☁️</div>
+        <div class="body">
+          <div class="ct">2026 阿里云峰会专题 · 腾讯云视角 <span class="badge">外部</span></div>
+          <div class="cd">站在腾讯云大数据视角，拆解阿里云峰会的 Data+AI 发布与定位，做竞品视角的对照分析。</div>
+          <span class="cm">haiyangchenbj.github.io/data-ai-intel/reports →</span>
+        </div>
+        <div class="ext">↗</div>
+      </a>
 
-<div class="section">
-  <h2>文章排行榜（按阅读量）</h2>
-  <table>
-    <tr><th>#</th><th>标题</th><th>日期</th><th>阅读</th><th>推荐%</th><th></th></tr>
-    <tr><td style="color:#999">1</td><td>AI Agent 如何重塑企业数据平台</td><td>2026-01-29</td><td><strong>2,205</strong></td><td>66.2%</td><td><span style="color:#1a3a5c;font-size:11px">&#x1F340; 66.2%</span></td></tr><tr><td style="color:#999">2</td><td>数据平台的下一个十年，在这一周被定义了？</td><td>2026-03-31</td><td><strong>2,025</strong></td><td>50.4%</td><td><span style="color:#1a3a5c;font-size:11px">&#x1F340; 50.4%</span></td></tr><tr><td style="color:#999">3</td><td>Mistral 凭什么成为"欧洲之光"：开源即主权</td><td>2026-07-16</td><td><strong>617</strong></td><td>49.2%</td><td><span style="color:#1a3a5c;font-size:11px">&#x1F340; 49.2%</span></td></tr><tr><td style="color:#999">4</td><td>DAIS 2026观察：Databricks 在抢 agent 时代的数据落点</td><td>2026-06-21</td><td><strong>337</strong></td><td>8.4%</td><td><span style="color:#1a3a5c;font-size:11px">&#x1F340; 8.4%</span></td></tr><tr><td style="color:#999">5</td><td>腾讯版「龙虾」上线当天，我用它搭了一套行业情报日报系统</td><td>2026-03-11</td><td><strong>180</strong></td><td>5.4%</td><td><span style="color:#1a3a5c;font-size:11px">&#x1F340; 5.4%</span></td></tr><tr><td style="color:#999">6</td><td>当 0.28 美元 vs 125 美元成为可能：DeepSeek V4 在挑战什么？</td><td>2026-06-01</td><td><strong>169</strong></td><td>4.2%</td><td></td></tr><tr><td style="color:#999">7</td><td>AI 让每个人都更快了，组织却没有</td><td>2026-07-02</td><td><strong>150</strong></td><td>12.0%</td><td><span style="color:#1a3a5c;font-size:11px">&#x1F340; 12.0%</span></td></tr><tr><td style="color:#999">8</td><td>流湖之变（一）：Kafka 正在被三个方向同时挑战</td><td>2026-04-09</td><td><strong>145</strong></td><td>3.6%</td><td></td></tr><tr><td style="color:#999">9</td><td>当数据平台为AI而生：OpenAI、DeepSeek和月之暗面的基础设施启示</td><td>2026-04-23</td><td><strong>141</strong></td><td>3.5%</td><td></td></tr><tr><td style="color:#999">10</td><td>Agent 过了惊艳期，每个 AI 深度用户都该有的 Skill 设计标准</td><td>2026-05-28</td><td><strong>120</strong></td><td>3.0%</td><td></td></tr><tr><td style="color:#999">11</td><td>从一次 Windows 上的 OpenClaw 部署说起：如果 AI 真正运行在自己的电脑里，会变成...</td><td>2026-03-15</td><td><strong>106</strong></td><td>3.2%</td><td></td></tr><tr><td style="color:#999">12</td><td>欧洲工业不要会写诗的 AI</td><td>2026-07-23</td><td><strong>104</strong></td><td>8.3%</td><td><span style="color:#1a3a5c;font-size:11px">&#x1F340; 8.3%</span></td></tr><tr><td style="color:#999">13</td><td>求监管的AI三巨头，正在制造失控</td><td>2026-07-26</td><td><strong>101</strong></td><td>8.0%</td><td><span style="color:#1a3a5c;font-size:11px">&#x1F340; 8.0%</span></td></tr><tr><td style="color:#999">14</td><td>普通人Windows 部署 OpenClaw 12小时全程实录</td><td>2026-03-15</td><td><strong>89</strong></td><td>2.7%</td><td></td></tr><tr><td style="color:#999">15</td><td>当模型越来越便宜，谁在赚钱？</td><td>2026-07-19</td><td><strong>87</strong></td><td>6.9%</td><td><span style="color:#1a3a5c;font-size:11px">&#x1F340; 6.9%</span></td></tr><tr><td style="color:#999">16</td><td>AI 智能够了，但它做不了员工</td><td>2026-06-04</td><td><strong>70</strong></td><td>1.7%</td><td></td></tr><tr><td style="color:#999">17</td><td>OpenClaw 的手伸向数据湖，从 Fabric 到 SnowWork 数据平台新形态</td><td>2026-03-19</td><td><strong>69</strong></td><td>2.1%</td><td></td></tr><tr><td style="color:#999">18</td><td>为什么 AI 能力越强，统一数据治理越重要</td><td>2026-02-05</td><td><strong>68</strong></td><td>2.0%</td><td></td></tr><tr><td style="color:#999">19</td><td>你的 Kafka 该怎么办？一份选型决策指南 | 流湖之变（三）</td><td>2026-04-21</td><td><strong>67</strong></td><td>1.7%</td><td></td></tr><tr><td style="color:#999">20</td><td>当 AI 成为流数据的买家：流湖之变（二）</td><td>2026-04-14</td><td><strong>66</strong></td><td>1.6%</td><td></td></tr><tr><td style="color:#999">21</td><td>模型什么都敢答，但它什么都记得吗？——RAG 与知识边界外移</td><td>2026-04-16</td><td><strong>63</strong></td><td>1.6%</td><td></td></tr><tr><td style="color:#999">22</td><td>你的电脑，正在成为AI的家</td><td>2026-04-07</td><td><strong>62</strong></td><td>1.5%</td><td></td></tr><tr><td style="color:#999">23</td><td>Transformer、BERT、GPT-3：大模型时代的三块地基</td><td>2026-03-08</td><td><strong>59</strong></td><td>1.8%</td><td></td></tr><tr><td style="color:#999">24</td><td>选开源大模型不等于省钱：把交付责任与成本从厂商搬回公司内</td><td>2026-01-12</td><td><strong>58</strong></td><td>1.7%</td><td></td></tr><tr><td style="color:#999">25</td><td>数据不是护城河，稀缺数据才是</td><td>2026-07-05</td><td><strong>57</strong></td><td>4.5%</td><td></td></tr><tr><td style="color:#999">26</td><td>AI 员工跨不过的两道门：知识与责任</td><td>2026-06-18</td><td><strong>54</strong></td><td>1.3%</td><td></td></tr><tr><td style="color:#999">27</td><td>AI 不只是嘴上说说——工具调用、推理链与 Agent 的起源</td><td>2026-05-05</td><td><strong>47</strong></td><td>1.2%</td><td></td></tr><tr><td style="color:#999">28</td><td>企业部署 AI：如何减少烂尾与返工</td><td>2026-02-23</td><td><strong>44</strong></td><td>1.3%</td><td></td></tr><tr><td style="color:#999">29</td><td>AI时代还需要买SaaS吗？</td><td>2026-03-01</td><td><strong>43</strong></td><td>1.3%</td><td></td></tr><tr><td style="color:#999">30</td><td>AI 在 SaaS 里画了一条线</td><td>2026-06-02</td><td><strong>43</strong></td><td>1.1%</td><td></td></tr>
-  </table>
-</div>
+      <a class="card" href="https://haiyangchenbj.github.io/data-ai-intel/reports/2026_FFA_Flink_Forward_Asia_%E4%B8%93%E9%A2%98%E6%8A%A5%E5%91%8A.html">
+        <div class="ic">🌊</div>
+        <div class="body">
+          <div class="ct">FFA 2026 专题报告 <span class="badge">外部</span></div>
+          <div class="cd">Apache Flink 官方大会 FFA 2026 深度解读：流批一体、实时数仓、Lakehouse 实时化的技术走向与厂商策略。</div>
+          <span class="cm">haiyangchenbj.github.io/data-ai-intel/reports →</span>
+        </div>
+        <div class="ext">↗</div>
+      </a>
 
-<div class="section">
-  <h2>文章阅读量分布（TOP 20）</h2>
-  <div class="chart-box"><canvas id="barChart"></canvas></div>
-</div>
+      <a class="card" href="https://haiyangchenbj.github.io/data-ai-intel/reports/data-platform-ai-analyst-review-2026.html">
+        <div class="ic">📊</div>
+        <div class="body">
+          <div class="ct">数据平台 + AI：分析师观点全景回顾 <span class="badge">外部</span></div>
+          <div class="cd">Gartner / IDC / Forrester 等分析师一年来对数据平台 + AI 的核心判断汇总（2025.04—2026.04），看行业共识与分歧。</div>
+          <span class="cm">haiyangchenbj.github.io/data-ai-intel/reports →</span>
+        </div>
+        <div class="ext">↗</div>
+      </a>
 
-<div class="section">
-  <h2>每日阅读量</h2>
-  <div class="chart-box"><canvas id="readChart"></canvas></div>
-</div>
+    </div>
+  </div>
+</section>
 
-<div class="footer">数据来源：微信公众号后台导出 · 边界层笔记 | hai.bj.cn</div>
-</div>
+<!-- 数据报告 -->
+<section>
+  <div class="wrap">
+    <div class="sec-head"><h2>数据报告</h2><span class="en">Data reports</span></div>
+    <p class="sec-note">边界层笔记自身的量化复盘——内容策略、粉丝结构、爆款逻辑。</p>
+    <div class="cards">
 
-<script>
-(function(){
-  var d = [{"date": "2026-05-01", "new": 1, "cancel": 0, "net": 1, "cumulative": 455}, {"date": "2026-05-02", "new": 0, "cancel": 0, "net": 0, "cumulative": 455}, {"date": "2026-05-03", "new": 1, "cancel": 0, "net": 1, "cumulative": 456}, {"date": "2026-05-04", "new": 0, "cancel": 0, "net": 0, "cumulative": 456}, {"date": "2026-05-05", "new": 1, "cancel": 0, "net": 1, "cumulative": 457}, {"date": "2026-05-06", "new": 2, "cancel": 0, "net": 2, "cumulative": 459}, {"date": "2026-05-07", "new": 0, "cancel": 0, "net": 0, "cumulative": 459}, {"date": "2026-05-08", "new": 0, "cancel": 0, "net": 0, "cumulative": 459}, {"date": "2026-05-09", "new": 0, "cancel": 0, "net": 0, "cumulative": 459}, {"date": "2026-05-10", "new": 1, "cancel": 0, "net": 1, "cumulative": 460}, {"date": "2026-05-11", "new": 1, "cancel": 1, "net": 0, "cumulative": 460}, {"date": "2026-05-12", "new": 1, "cancel": 0, "net": 1, "cumulative": 461}, {"date": "2026-05-13", "new": 0, "cancel": 0, "net": 0, "cumulative": 461}, {"date": "2026-05-14", "new": 0, "cancel": 0, "net": 0, "cumulative": 461}, {"date": "2026-05-15", "new": 1, "cancel": 0, "net": 1, "cumulative": 462}, {"date": "2026-05-16", "new": 1, "cancel": 0, "net": 1, "cumulative": 463}, {"date": "2026-05-17", "new": 0, "cancel": 0, "net": 0, "cumulative": 463}, {"date": "2026-05-18", "new": 0, "cancel": 0, "net": 0, "cumulative": 463}, {"date": "2026-05-19", "new": 0, "cancel": 0, "net": 0, "cumulative": 463}, {"date": "2026-05-20", "new": 0, "cancel": 1, "net": -1, "cumulative": 462}, {"date": "2026-05-21", "new": 2, "cancel": 0, "net": 2, "cumulative": 464}, {"date": "2026-05-22", "new": 0, "cancel": 0, "net": 0, "cumulative": 464}, {"date": "2026-05-23", "new": 0, "cancel": 0, "net": 0, "cumulative": 464}, {"date": "2026-05-24", "new": 0, "cancel": 0, "net": 0, "cumulative": 464}, {"date": "2026-05-25", "new": 1, "cancel": 0, "net": 1, "cumulative": 465}, {"date": "2026-05-26", "new": 0, "cancel": 0, "net": 0, "cumulative": 465}, {"date": "2026-05-27", "new": 0, "cancel": 0, "net": 0, "cumulative": 465}, {"date": "2026-05-28", "new": 0, "cancel": 0, "net": 0, "cumulative": 465}, {"date": "2026-05-29", "new": 0, "cancel": 0, "net": 0, "cumulative": 465}, {"date": "2026-05-30", "new": 0, "cancel": 0, "net": 0, "cumulative": 465}, {"date": "2026-05-31", "new": 0, "cancel": 0, "net": 0, "cumulative": 465}, {"date": "2026-06-01", "new": 1, "cancel": 0, "net": 1, "cumulative": 466}, {"date": "2026-06-02", "new": 0, "cancel": 1, "net": -1, "cumulative": 465}, {"date": "2026-06-03", "new": 0, "cancel": 0, "net": 0, "cumulative": 465}, {"date": "2026-06-04", "new": 1, "cancel": 0, "net": 1, "cumulative": 466}, {"date": "2026-06-05", "new": 0, "cancel": 0, "net": 0, "cumulative": 466}, {"date": "2026-06-06", "new": 1, "cancel": 0, "net": 1, "cumulative": 467}, {"date": "2026-06-07", "new": 0, "cancel": 0, "net": 0, "cumulative": 467}, {"date": "2026-06-08", "new": 0, "cancel": 0, "net": 0, "cumulative": 467}, {"date": "2026-06-09", "new": 0, "cancel": 0, "net": 0, "cumulative": 467}, {"date": "2026-06-10", "new": 0, "cancel": 0, "net": 0, "cumulative": 467}, {"date": "2026-06-11", "new": 1, "cancel": 0, "net": 1, "cumulative": 468}, {"date": "2026-06-12", "new": 1, "cancel": 0, "net": 1, "cumulative": 469}, {"date": "2026-06-13", "new": 1, "cancel": 0, "net": 1, "cumulative": 470}, {"date": "2026-06-14", "new": 0, "cancel": 0, "net": 0, "cumulative": 470}, {"date": "2026-06-15", "new": 2, "cancel": 0, "net": 2, "cumulative": 472}, {"date": "2026-06-16", "new": 2, "cancel": 0, "net": 2, "cumulative": 474}, {"date": "2026-06-17", "new": 0, "cancel": 0, "net": 0, "cumulative": 474}, {"date": "2026-06-18", "new": 1, "cancel": 0, "net": 1, "cumulative": 475}, {"date": "2026-06-19", "new": 0, "cancel": 0, "net": 0, "cumulative": 475}, {"date": "2026-06-20", "new": 0, "cancel": 0, "net": 0, "cumulative": 475}, {"date": "2026-06-21", "new": 1, "cancel": 0, "net": 1, "cumulative": 476}, {"date": "2026-06-22", "new": 2, "cancel": 0, "net": 2, "cumulative": 478}, {"date": "2026-06-23", "new": 0, "cancel": 0, "net": 0, "cumulative": 478}, {"date": "2026-06-24", "new": 0, "cancel": 0, "net": 0, "cumulative": 478}, {"date": "2026-06-25", "new": 2, "cancel": 0, "net": 2, "cumulative": 480}, {"date": "2026-06-26", "new": 1, "cancel": 0, "net": 1, "cumulative": 481}, {"date": "2026-06-27", "new": 0, "cancel": 0, "net": 0, "cumulative": 481}, {"date": "2026-06-28", "new": 2, "cancel": 1, "net": 1, "cumulative": 482}, {"date": "2026-06-29", "new": 0, "cancel": 0, "net": 0, "cumulative": 482}, {"date": "2026-06-30", "new": 0, "cancel": 0, "net": 0, "cumulative": 482}, {"date": "2026-07-01", "new": 0, "cancel": 0, "net": 0, "cumulative": 482}, {"date": "2026-07-02", "new": 1, "cancel": 0, "net": 1, "cumulative": 483}, {"date": "2026-07-03", "new": 0, "cancel": 0, "net": 0, "cumulative": 483}, {"date": "2026-07-04", "new": 1, "cancel": 0, "net": 1, "cumulative": 484}, {"date": "2026-07-05", "new": 0, "cancel": 0, "net": 0, "cumulative": 484}, {"date": "2026-07-06", "new": 0, "cancel": 0, "net": 0, "cumulative": 484}, {"date": "2026-07-07", "new": 1, "cancel": 0, "net": 1, "cumulative": 485}, {"date": "2026-07-08", "new": 1, "cancel": 0, "net": 1, "cumulative": 486}, {"date": "2026-07-09", "new": 1, "cancel": 0, "net": 1, "cumulative": 487}, {"date": "2026-07-10", "new": 1, "cancel": 0, "net": 1, "cumulative": 488}, {"date": "2026-07-11", "new": 0, "cancel": 0, "net": 0, "cumulative": 488}, {"date": "2026-07-12", "new": 0, "cancel": 0, "net": 0, "cumulative": 488}, {"date": "2026-07-13", "new": 0, "cancel": 0, "net": 0, "cumulative": 488}, {"date": "2026-07-14", "new": 0, "cancel": 0, "net": 0, "cumulative": 488}, {"date": "2026-07-15", "new": 0, "cancel": 0, "net": 0, "cumulative": 488}, {"date": "2026-07-16", "new": 0, "cancel": 0, "net": 0, "cumulative": 488}, {"date": "2026-07-17", "new": 2, "cancel": 0, "net": 2, "cumulative": 490}, {"date": "2026-07-18", "new": 2, "cancel": 0, "net": 2, "cumulative": 492}, {"date": "2026-07-19", "new": 5, "cancel": 0, "net": 5, "cumulative": 497}, {"date": "2026-07-20", "new": 0, "cancel": 0, "net": 0, "cumulative": 497}, {"date": "2026-07-21", "new": 4, "cancel": 0, "net": 4, "cumulative": 501}, {"date": "2026-07-22", "new": 3, "cancel": 0, "net": 3, "cumulative": 504}, {"date": "2026-07-23", "new": 2, "cancel": 0, "net": 2, "cumulative": 506}, {"date": "2026-07-24", "new": 1, "cancel": 1, "net": 0, "cumulative": 506}, {"date": "2026-07-25", "new": 0, "cancel": 0, "net": 0, "cumulative": 506}, {"date": "2026-07-26", "new": 1, "cancel": 0, "net": 1, "cumulative": 507}, {"date": "2026-07-27", "new": 0, "cancel": 0, "net": 0, "cumulative": 507}, {"date": "2026-07-28", "new": 0, "cancel": 0, "net": 0, "cumulative": 507}, {"date": "2026-07-29", "new": 0, "cancel": 0, "net": 0, "cumulative": 507}];
-  if (d.length) {
-    new Chart(document.getElementById('fanChart').getContext('2d'), {
-      type: 'line',
-      data: {
-        labels: d.map(function(x){return x.date}),
-        datasets: [
-          {label:'新关注',data:d.map(function(x){return x.new}),borderColor:'#137333',backgroundColor:'rgba(19,115,51,0.05)',fill:true,tension:.3,pointRadius:0},
-          {label:'取关',data:d.map(function(x){return x.cancel}),borderColor:'#c5221f',borderDash:[3,3],tension:.3,pointRadius:0},
-          {label:'净增',data:d.map(function(x){return x.net}),borderColor:'#1a3a5c',borderWidth:2,tension:.3,pointRadius:0}
-        ]
-      },
-      options: {responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom',labels:{boxWidth:12,padding:20}}},scales:{x:{grid:{display:false}},y:{grid:{color:'#f0ede8'}}}}
-    });
-    new Chart(document.getElementById('cumChart').getContext('2d'), {
-      type: 'line',
-      data: {
-        labels: d.map(function(x){return x.date}),
-        datasets: [
-          {label:'累积粉丝',data:d.map(function(x){return x.cumulative}),borderColor:'#1a3a5c',backgroundColor:'rgba(26,58,92,0.08)',fill:true,borderWidth:2,tension:.3,pointRadius:0}
-        ]
-      },
-      options: {responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{grid:{display:false}},y:{grid:{color:'#f0ede8'}}}}
-    });
-  }
-})();
+      <a class="card" href="wechat-data-report.html">
+        <div class="ic">📈</div>
+        <div class="body">
+          <div class="ct">边界层笔记 · 数据报告（微信生态） <span class="badge local">本地</span></div>
+          <div class="cd">公众号生态数据复盘：粉丝结构、爆款文章与内容策略的量化视图。507 位读者、Top 文章与增长曲线的可视化。</div>
+          <span class="cm">hai.bj.cn/report/wechat-data-report.html →</span>
+        </div>
+        <div class="ext">↗</div>
+      </a>
 
-(function(){
-  var a = [{"date": "2026-01-29", "title": "AI Agent 如何重塑企业数据平台", "readers": 2205, "ratio": 66.2}, {"date": "2026-03-31", "title": "数据平台的下一个十年，在这一周被定义了？", "readers": 2025, "ratio": 50.4}, {"date": "2026-07-16", "title": "Mistral 凭什么成为\"欧洲之光\"：开源即主权", "readers": 617, "ratio": 49.2}, {"date": "2026-06-21", "title": "DAIS 2026观察：Databricks 在抢 agent 时代的数据落点", "readers": 337, "ratio": 8.4}, {"date": "2026-03-11", "title": "腾讯版「龙虾」上线当天，我用它搭了一套行业情报日报系统", "readers": 180, "ratio": 5.4}, {"date": "2026-06-01", "title": "当 0.28 美元 vs 125 美元成为可能：DeepSeek V4 在挑战什么？", "readers": 169, "ratio": 4.2}, {"date": "2026-07-02", "title": "AI 让每个人都更快了，组织却没有", "readers": 150, "ratio": 12.0}, {"date": "2026-04-09", "title": "流湖之变（一）：Kafka 正在被三个方向同时挑战", "readers": 145, "ratio": 3.6}, {"date": "2026-04-23", "title": "当数据平台为AI而生：OpenAI、DeepSeek和月之暗面的基础设施启示", "readers": 141, "ratio": 3.5}, {"date": "2026-05-28", "title": "Agent 过了惊艳期，每个 AI 深度用户都该有的 Skill 设计标准", "readers": 120, "ratio": 3.0}, {"date": "2026-03-15", "title": "从一次 Windows 上的 OpenClaw 部署说起：如果 AI 真正运行在自己的电脑里，会变成什么？", "readers": 106, "ratio": 3.2}, {"date": "2026-07-23", "title": "欧洲工业不要会写诗的 AI", "readers": 104, "ratio": 8.3}, {"date": "2026-07-26", "title": "求监管的AI三巨头，正在制造失控", "readers": 101, "ratio": 8.0}, {"date": "2026-03-15", "title": "普通人Windows 部署 OpenClaw 12小时全程实录", "readers": 89, "ratio": 2.7}, {"date": "2026-07-19", "title": "当模型越来越便宜，谁在赚钱？", "readers": 87, "ratio": 6.9}, {"date": "2026-06-04", "title": "AI 智能够了，但它做不了员工", "readers": 70, "ratio": 1.7}, {"date": "2026-03-19", "title": "OpenClaw 的手伸向数据湖，从 Fabric 到 SnowWork 数据平台新形态", "readers": 69, "ratio": 2.1}, {"date": "2026-02-05", "title": "为什么 AI 能力越强，统一数据治理越重要", "readers": 68, "ratio": 2.0}, {"date": "2026-04-21", "title": "你的 Kafka 该怎么办？一份选型决策指南 | 流湖之变（三）", "readers": 67, "ratio": 1.7}, {"date": "2026-04-14", "title": "当 AI 成为流数据的买家：流湖之变（二）", "readers": 66, "ratio": 1.6}, {"date": "2026-04-16", "title": "模型什么都敢答，但它什么都记得吗？——RAG 与知识边界外移", "readers": 63, "ratio": 1.6}, {"date": "2026-04-07", "title": "你的电脑，正在成为AI的家", "readers": 62, "ratio": 1.5}, {"date": "2026-03-08", "title": "Transformer、BERT、GPT-3：大模型时代的三块地基", "readers": 59, "ratio": 1.8}, {"date": "2026-01-12", "title": "选开源大模型不等于省钱：把交付责任与成本从厂商搬回公司内", "readers": 58, "ratio": 1.7}, {"date": "2026-07-05", "title": "数据不是护城河，稀缺数据才是", "readers": 57, "ratio": 4.5}, {"date": "2026-06-18", "title": "AI 员工跨不过的两道门：知识与责任", "readers": 54, "ratio": 1.3}, {"date": "2026-05-05", "title": "AI 不只是嘴上说说——工具调用、推理链与 Agent 的起源", "readers": 47, "ratio": 1.2}, {"date": "2026-02-23", "title": "企业部署 AI：如何减少烂尾与返工", "readers": 44, "ratio": 1.3}, {"date": "2026-03-01", "title": "AI时代还需要买SaaS吗？", "readers": 43, "ratio": 1.3}, {"date": "2026-06-02", "title": "AI 在 SaaS 里画了一条线", "readers": 43, "ratio": 1.1}];
-  if (a.length) {
-    new Chart(document.getElementById('barChart').getContext('2d'), {
-      type: 'bar',
-      data: {
-        labels: a.slice(0,20).map(function(x){return x.title.slice(0,22)}),
-        datasets: [{label:'阅读量',data:a.slice(0,20).map(function(x){return x.readers}),backgroundColor:'#1a3a5c',borderRadius:3}]
-      },
-      options: {indexAxis:'y',responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{grid:{color:'#f0ede8'}},y:{grid:{display:false}}}}
-    });
-  }
-})();
+    </div>
+  </div>
+</section>
 
-(function(){
-  var d = [{"date": "2026-01-01", "reads": 4, "shares": 0, "favs": 1, "original": 0}, {"date": "2026-01-02", "reads": 4, "shares": 0, "favs": 0, "original": 0}, {"date": "2026-01-03", "reads": 2, "shares": 0, "favs": 0, "original": 0}, {"date": "2026-01-04", "reads": 0, "shares": 0, "favs": 0, "original": 0}, {"date": "2026-01-05", "reads": 53, "shares": 2, "favs": 0, "original": 0}, {"date": "2026-01-06", "reads": 25, "shares": 0, "favs": 0, "original": 0}, {"date": "2026-01-07", "reads": 8, "shares": 0, "favs": 0, "original": 0}, {"date": "2026-01-08", "reads": 6, "shares": 0, "favs": 0, "original": 0}, {"date": "2026-01-09", "reads": 2, "shares": 0, "favs": 0, "original": 0}, {"date": "2026-01-10", "reads": 4, "shares": 1, "favs": 0, "original": 0}, {"date": "2026-01-11", "reads": 6, "shares": 0, "favs": 0, "original": 0}, {"date": "2026-01-12", "reads": 22, "shares": 1, "favs": 0, "original": 0}, {"date": "2026-01-13", "reads": 62, "shares": 4, "favs": 1, "original": 0}, {"date": "2026-01-14", "reads": 35, "shares": 2, "favs": 0, "original": 0}, {"date": "2026-01-15", "reads": 0, "shares": 0, "favs": 0, "original": 0}, {"date": "2026-01-16", "reads": 6, "shares": 0, "favs": 0, "original": 0}, {"date": "2026-01-17", "reads": 2, "shares": 0, "favs": 0, "original": 0}, {"date": "2026-01-18", "reads": 6, "shares": 0, "favs": 0, "original": 0}, {"date": "2026-01-19", "reads": 31, "shares": 1, "favs": 1, "original": 0}, {"date": "2026-01-20", "reads": 6, "shares": 0, "favs": 0, "original": 0}, {"date": "2026-01-21", "reads": 16, "shares": 2, "favs": 0, "original": 0}, {"date": "2026-01-22", "reads": 24, "shares": 1, "favs": 0, "original": 0}, {"date": "2026-01-23", "reads": 22, "shares": 0, "favs": 1, "original": 0}, {"date": "2026-01-24", "reads": 4, "shares": 1, "favs": 0, "original": 0}, {"date": "2026-01-25", "reads": 10, "shares": 0, "favs": 0, "original": 0}, {"date": "2026-01-26", "reads": 35, "shares": 1, "favs": 0, "original": 0}, {"date": "2026-01-27", "reads": 5, "shares": 0, "favs": 0, "original": 0}, {"date": "2026-01-28", "reads": 0, "shares": 0, "favs": 0, "original": 0}, {"date": "2026-01-29", "reads": 27, "shares": 1, "favs": 0, "original": 0}, {"date": "2026-01-30", "reads": 137, "shares": 7, "favs": 1, "original": 0}, {"date": "2026-01-31", "reads": 55, "shares": 4, "favs": 3, "original": 0}, {"date": "2026-02-01", "reads": 16, "shares": 2, "favs": 1, "original": 0}, {"date": "2026-02-02", "reads": 35, "shares": 3, "favs": 0, "original": 0}, {"date": "2026-02-03", "reads": 32, "shares": 3, "favs": 2, "original": 0}, {"date": "2026-02-04", "reads": 23, "shares": 1, "favs": 1, "original": 0}, {"date": "2026-02-05", "reads": 41, "shares": 5, "favs": 2, "original": 0}, {"date": "2026-02-06", "reads": 22, "shares": 1, "favs": 0, "original": 0}, {"date": "2026-02-07", "reads": 10, "shares": 0, "favs": 0, "original": 0}, {"date": "2026-02-08", "reads": 2, "shares": 0, "favs": 0, "original": 0}, {"date": "2026-02-09", "reads": 12, "shares": 2, "favs": 0, "original": 0}, {"date": "2026-02-10", "reads": 4, "shares": 1, "favs": 0, "original": 0}, {"date": "2026-02-11", "reads": 12, "shares": 0, "favs": 0, "original": 0}, {"date": "2026-02-12", "reads": 12, "shares": 0, "favs": 1, "original": 0}, {"date": "2026-02-13", "reads": 43, "shares": 2, "favs": 0, "original": 0}, {"date": "2026-02-14", "reads": 16, "shares": 0, "favs": 1, "original": 0}, {"date": "2026-02-15", "reads": 26, "shares": 3, "favs": 1, "original": 0}, {"date": "2026-02-16", "reads": 14, "shares": 0, "favs": 0, "original": 0}, {"date": "2026-02-17", "reads": 14, "shares": 2, "favs": 1, "original": 0}, {"date": "2026-02-18", "reads": 30, "shares": 3, "favs": 1, "original": 0}, {"date": "2026-02-19", "reads": 77, "shares": 4, "favs": 3, "original": 0}, {"date": "2026-02-20", "reads": 60, "shares": 8, "favs": 5, "original": 0}, {"date": "2026-02-21", "reads": 65, "shares": 5, "favs": 4, "original": 0}, {"date": "2026-02-22", "reads": 249, "shares": 22, "favs": 10, "original": 0}, {"date": "2026-02-23", "reads": 179, "shares": 7, "favs": 6, "original": 0}, {"date": "2026-02-24", "reads": 166, "shares": 10, "favs": 9, "original": 0}, {"date": "2026-02-25", "reads": 96, "shares": 6, "favs": 3, "original": 0}, {"date": "2026-02-26", "reads": 108, "shares": 5, "favs": 4, "original": 0}, {"date": "2026-02-27", "reads": 134, "shares": 6, "favs": 2, "original": 0}, {"date": "2026-02-28", "reads": 95, "shares": 6, "favs": 3, "original": 0}, {"date": "2026-03-01", "reads": 73, "shares": 5, "favs": 3, "original": 0}, {"date": "2026-03-02", "reads": 102, "shares": 4, "favs": 1, "original": 0}, {"date": "2026-03-03", "reads": 67, "shares": 2, "favs": 0, "original": 0}, {"date": "2026-03-04", "reads": 107, "shares": 10, "favs": 4, "original": 0}, {"date": "2026-03-05", "reads": 87, "shares": 9, "favs": 4, "original": 0}, {"date": "2026-03-06", "reads": 128, "shares": 10, "favs": 7, "original": 0}, {"date": "2026-03-07", "reads": 162, "shares": 14, "favs": 7, "original": 0}, {"date": "2026-03-08", "reads": 209, "shares": 16, "favs": 11, "original": 0}, {"date": "2026-03-09", "reads": 321, "shares": 15, "favs": 13, "original": 0}, {"date": "2026-03-10", "reads": 161, "shares": 14, "favs": 4, "original": 0}, {"date": "2026-03-11", "reads": 354, "shares": 18, "favs": 4, "original": 0}, {"date": "2026-03-12", "reads": 168, "shares": 8, "favs": 3, "original": 0}, {"date": "2026-03-13", "reads": 167, "shares": 11, "favs": 3, "original": 0}, {"date": "2026-03-14", "reads": 111, "shares": 10, "favs": 2, "original": 0}, {"date": "2026-03-15", "reads": 364, "shares": 19, "favs": 14, "original": 0}, {"date": "2026-03-16", "reads": 177, "shares": 17, "favs": 9, "original": 0}, {"date": "2026-03-17", "reads": 146, "shares": 11, "favs": 3, "original": 0}, {"date": "2026-03-18", "reads": 145, "shares": 8, "favs": 1, "original": 0}, {"date": "2026-03-19", "reads": 250, "shares": 13, "favs": 4, "original": 0}, {"date": "2026-03-20", "reads": 183, "shares": 5, "favs": 1, "original": 0}, {"date": "2026-03-21", "reads": 47, "shares": 3, "favs": 2, "original": 0}, {"date": "2026-03-22", "reads": 45, "shares": 2, "favs": 1, "original": 0}, {"date": "2026-03-23", "reads": 173, "shares": 12, "favs": 4, "original": 0}, {"date": "2026-03-24", "reads": 133, "shares": 5, "favs": 4, "original": 0}, {"date": "2026-03-25", "reads": 113, "shares": 7, "favs": 2, "original": 0}, {"date": "2026-03-26", "reads": 103, "shares": 8, "favs": 3, "original": 0}, {"date": "2026-03-27", "reads": 97, "shares": 3, "favs": 1, "original": 0}, {"date": "2026-03-28", "reads": 62, "shares": 8, "favs": 5, "original": 0}, {"date": "2026-03-29", "reads": 32, "shares": 1, "favs": 0, "original": 0}, {"date": "2026-03-30", "reads": 101, "shares": 9, "favs": 1, "original": 0}, {"date": "2026-03-31", "reads": 218, "shares": 8, "favs": 2, "original": 0}, {"date": "2026-04-01", "reads": 78, "shares": 4, "favs": 1, "original": 0}, {"date": "2026-04-02", "reads": 46, "shares": 2, "favs": 0, "original": 0}, {"date": "2026-04-03", "reads": 118, "shares": 5, "favs": 3, "original": 0}, {"date": "2026-04-04", "reads": 40, "shares": 1, "favs": 1, "original": 0}, {"date": "2026-04-05", "reads": 754, "shares": 51, "favs": 32, "original": 0}, {"date": "2026-04-06", "reads": 1765, "shares": 109, "favs": 62, "original": 0}, {"date": "2026-04-07", "reads": 1697, "shares": 86, "favs": 31, "original": 0}, {"date": "2026-04-08", "reads": 88, "shares": 2, "favs": 1, "original": 0}, {"date": "2026-04-09", "reads": 275, "shares": 12, "favs": 7, "original": 0}, {"date": "2026-04-10", "reads": 42, "shares": 4, "favs": 1, "original": 0}, {"date": "2026-04-11", "reads": 23, "shares": 0, "favs": 0, "original": 0}, {"date": "2026-04-12", "reads": 18, "shares": 0, "favs": 0, "original": 0}, {"date": "2026-04-13", "reads": 34, "shares": 1, "favs": 0, "original": 0}, {"date": "2026-04-14", "reads": 111, "shares": 9, "favs": 2, "original": 0}, {"date": "2026-04-15", "reads": 23, "shares": 1, "favs": 0, "original": 0}, {"date": "2026-04-16", "reads": 112, "shares": 1, "favs": 0, "original": 0}, {"date": "2026-04-17", "reads": 12, "shares": 0, "favs": 0, "original": 0}, {"date": "2026-04-18", "reads": 20, "shares": 3, "favs": 0, "original": 0}, {"date": "2026-04-19", "reads": 6, "shares": 0, "favs": 0, "original": 0}, {"date": "2026-04-20", "reads": 22, "shares": 2, "favs": 0, "original": 0}, {"date": "2026-04-21", "reads": 54, "shares": 3, "favs": 1, "original": 0}, {"date": "2026-04-22", "reads": 66, "shares": 3, "favs": 1, "original": 0}, {"date": "2026-04-23", "reads": 107, "shares": 4, "favs": 1, "original": 0}, {"date": "2026-04-24", "reads": 50, "shares": 0, "favs": 0, "original": 0}, {"date": "2026-04-25", "reads": 8, "shares": 0, "favs": 0, "original": 0}, {"date": "2026-04-26", "reads": 4, "shares": 0, "favs": 0, "original": 0}, {"date": "2026-04-27", "reads": 4, "shares": 0, "favs": 0, "original": 0}, {"date": "2026-04-28", "reads": 8, "shares": 1, "favs": 0, "original": 0}, {"date": "2026-04-29", "reads": 12, "shares": 0, "favs": 0, "original": 0}, {"date": "2026-04-30", "reads": 72, "shares": 3, "favs": 0, "original": 0}, {"date": "2026-05-01", "reads": 38, "shares": 2, "favs": 0, "original": 0}, {"date": "2026-05-02", "reads": 8, "shares": 0, "favs": 0, "original": 0}, {"date": "2026-05-03", "reads": 18, "shares": 1, "favs": 0, "original": 0}, {"date": "2026-05-04", "reads": 28, "shares": 5, "favs": 1, "original": 0}, {"date": "2026-05-05", "reads": 132, "shares": 11, "favs": 2, "original": 0}, {"date": "2026-05-06", "reads": 54, "shares": 0, "favs": 1, "original": 0}, {"date": "2026-05-07", "reads": 30, "shares": 1, "favs": 0, "original": 0}, {"date": "2026-05-08", "reads": 4, "shares": 0, "favs": 0, "original": 0}, {"date": "2026-05-09", "reads": 19, "shares": 0, "favs": 0, "original": 0}, {"date": "2026-05-10", "reads": 6, "shares": 0, "favs": 0, "original": 0}, {"date": "2026-05-11", "reads": 20, "shares": 0, "favs": 1, "original": 0}, {"date": "2026-05-12", "reads": 30, "shares": 1, "favs": 0, "original": 0}, {"date": "2026-05-13", "reads": 14, "shares": 2, "favs": 0, "original": 0}, {"date": "2026-05-14", "reads": 16, "shares": 2, "favs": 0, "original": 0}, {"date": "2026-05-15", "reads": 15, "shares": 2, "favs": 0, "original": 0}, {"date": "2026-05-16", "reads": 18, "shares": 0, "favs": 1, "original": 0}, {"date": "2026-05-17", "reads": 2, "shares": 0, "favs": 0, "original": 0}, {"date": "2026-05-18", "reads": 13, "shares": 1, "favs": 0, "original": 0}, {"date": "2026-05-19", "reads": 2, "shares": 0, "favs": 0, "original": 0}, {"date": "2026-05-20", "reads": 0, "shares": 0, "favs": 0, "original": 0}, {"date": "2026-05-21", "reads": 66, "shares": 6, "favs": 1, "original": 0}, {"date": "2026-05-22", "reads": 4, "shares": 0, "favs": 0, "original": 0}, {"date": "2026-05-23", "reads": 2, "shares": 0, "favs": 0, "original": 0}, {"date": "2026-05-24", "reads": 6, "shares": 0, "favs": 0, "original": 0}, {"date": "2026-05-25", "reads": 61, "shares": 3, "favs": 0, "original": 0}, {"date": "2026-05-26", "reads": 2, "shares": 0, "favs": 0, "original": 0}, {"date": "2026-05-27", "reads": 2, "shares": 0, "favs": 0, "original": 0}, {"date": "2026-05-28", "reads": 84, "shares": 7, "favs": 3, "original": 0}, {"date": "2026-05-29", "reads": 25, "shares": 1, "favs": 2, "original": 0}, {"date": "2026-05-30", "reads": 2, "shares": 0, "favs": 0, "original": 0}, {"date": "2026-05-31", "reads": 0, "shares": 0, "favs": 0, "original": 0}, {"date": "2026-06-01", "reads": 141, "shares": 1, "favs": 1, "original": 0}, {"date": "2026-06-02", "reads": 93, "shares": 5, "favs": 3, "original": 0}, {"date": "2026-06-03", "reads": 61, "shares": 0, "favs": 0, "original": 0}, {"date": "2026-06-04", "reads": 78, "shares": 2, "favs": 0, "original": 0}, {"date": "2026-06-05", "reads": 29, "shares": 0, "favs": 0, "original": 0}, {"date": "2026-06-06", "reads": 132, "shares": 0, "favs": 0, "original": 0}, {"date": "2026-06-07", "reads": 20, "shares": 0, "favs": 1, "original": 0}, {"date": "2026-06-08", "reads": 22, "shares": 1, "favs": 0, "original": 0}, {"date": "2026-06-09", "reads": 12, "shares": 0, "favs": 0, "original": 0}, {"date": "2026-06-10", "reads": 8, "shares": 1, "favs": 0, "original": 0}, {"date": "2026-06-11", "reads": 67, "shares": 2, "favs": 1, "original": 0}, {"date": "2026-06-12", "reads": 14, "shares": 0, "favs": 2, "original": 0}, {"date": "2026-06-13", "reads": 8, "shares": 2, "favs": 0, "original": 0}, {"date": "2026-06-14", "reads": 60, "shares": 1, "favs": 0, "original": 0}, {"date": "2026-06-15", "reads": 22, "shares": 0, "favs": 0, "original": 0}, {"date": "2026-06-16", "reads": 64, "shares": 2, "favs": 2, "original": 0}, {"date": "2026-06-17", "reads": 20, "shares": 1, "favs": 0, "original": 0}, {"date": "2026-06-18", "reads": 90, "shares": 4, "favs": 0, "original": 0}, {"date": "2026-06-19", "reads": 18, "shares": 1, "favs": 1, "original": 0}, {"date": "2026-06-20", "reads": 8, "shares": 1, "favs": 0, "original": 0}, {"date": "2026-06-21", "reads": 131, "shares": 6, "favs": 6, "original": 0}, {"date": "2026-06-22", "reads": 299, "shares": 17, "favs": 11, "original": 0}, {"date": "2026-06-23", "reads": 106, "shares": 3, "favs": 3, "original": 0}, {"date": "2026-06-24", "reads": 54, "shares": 1, "favs": 0, "original": 0}, {"date": "2026-06-25", "reads": 80, "shares": 4, "favs": 0, "original": 0}, {"date": "2026-06-26", "reads": 41, "shares": 1, "favs": 1, "original": 0}, {"date": "2026-06-27", "reads": 70, "shares": 2, "favs": 1, "original": 0}, {"date": "2026-06-28", "reads": 38, "shares": 4, "favs": 0, "original": 0}, {"date": "2026-06-29", "reads": 24, "shares": 0, "favs": 0, "original": 0}, {"date": "2026-06-30", "reads": 16, "shares": 0, "favs": 1, "original": 0}, {"date": "2026-07-01", "reads": 14, "shares": 0, "favs": 0, "original": 0}, {"date": "2026-07-02", "reads": 124, "shares": 4, "favs": 1, "original": 0}, {"date": "2026-07-03", "reads": 22, "shares": 1, "favs": 1, "original": 0}, {"date": "2026-07-04", "reads": 16, "shares": 0, "favs": 0, "original": 0}, {"date": "2026-07-05", "reads": 51, "shares": 1, "favs": 0, "original": 0}, {"date": "2026-07-06", "reads": 18, "shares": 1, "favs": 0, "original": 0}, {"date": "2026-07-07", "reads": 26, "shares": 2, "favs": 0, "original": 0}, {"date": "2026-07-08", "reads": 21, "shares": 1, "favs": 0, "original": 0}, {"date": "2026-07-09", "reads": 39, "shares": 1, "favs": 0, "original": 0}, {"date": "2026-07-10", "reads": 75, "shares": 2, "favs": 1, "original": 0}, {"date": "2026-07-11", "reads": 38, "shares": 0, "favs": 0, "original": 0}, {"date": "2026-07-12", "reads": 0, "shares": 0, "favs": 0, "original": 0}, {"date": "2026-07-13", "reads": 48, "shares": 1, "favs": 0, "original": 0}, {"date": "2026-07-14", "reads": 10, "shares": 0, "favs": 0, "original": 0}, {"date": "2026-07-15", "reads": 9, "shares": 0, "favs": 0, "original": 0}, {"date": "2026-07-16", "reads": 39, "shares": 3, "favs": 1, "original": 0}, {"date": "2026-07-17", "reads": 137, "shares": 4, "favs": 0, "original": 0}, {"date": "2026-07-18", "reads": 118, "shares": 2, "favs": 1, "original": 0}, {"date": "2026-07-19", "reads": 312, "shares": 7, "favs": 0, "original": 0}, {"date": "2026-07-20", "reads": 220, "shares": 2, "favs": 2, "original": 0}, {"date": "2026-07-21", "reads": 215, "shares": 4, "favs": 4, "original": 0}, {"date": "2026-07-22", "reads": 199, "shares": 1, "favs": 1, "original": 0}, {"date": "2026-07-23", "reads": 256, "shares": 7, "favs": 0, "original": 0}, {"date": "2026-07-24", "reads": 92, "shares": 0, "favs": 0, "original": 0}, {"date": "2026-07-25", "reads": 80, "shares": 3, "favs": 0, "original": 0}, {"date": "2026-07-26", "reads": 161, "shares": 3, "favs": 1, "original": 0}, {"date": "2026-07-27", "reads": 100, "shares": 0, "favs": 0, "original": 0}, {"date": "2026-07-28", "reads": 64, "shares": 2, "favs": 0, "original": 0}, {"date": "2026-07-29", "reads": 28, "shares": 0, "favs": 0, "original": 0}];
-  if (d.length) {
-    new Chart(document.getElementById('readChart').getContext('2d'), {
-      type: 'line',
-      data: {
-        labels: d.map(function(x){return x.date}),
-        datasets: [
-          {label:'阅读量',data:d.map(function(x){return x.reads}),borderColor:'#1a3a5c',backgroundColor:'rgba(26,58,92,0.05)',fill:true,tension:.3,pointRadius:1}
-        ]
-      },
-      options: {responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{grid:{display:false}},y:{grid:{color:'#f0ede8'}}}}
-    });
-  }
-})();
-</script>
+<footer>
+  <a href="https://hai.bj.cn/">hai.bj.cn</a> · 陈海洋 / Benjie · 把复杂技术翻译成可决策的语言
+</footer>
+
 </body>
 </html>

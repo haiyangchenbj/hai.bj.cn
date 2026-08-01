@@ -67,6 +67,12 @@
   .connect{display:flex;gap:10px;flex-wrap:wrap}
   .connect a{padding:9px 16px;border-radius:9px;border:1px solid var(--line);font-size:13.5px;font-weight:600;color:var(--navy);transition:all .18s}
   .connect a:hover{border-color:var(--accent);color:var(--accent);background:var(--accent-soft)}
+  .qr-slot{display:flex;gap:16px;align-items:center;margin-top:20px;padding:16px 18px;border:1px dashed var(--line);border-radius:12px;background:var(--accent-soft)}
+  .qr-box{width:66px;height:66px;border-radius:10px;background:#fff;border:1px solid var(--line);display:flex;align-items:center;justify-content:center;font-size:30px;overflow:hidden;flex:0 0 auto}
+  .qr-box img{width:100%;height:100%;object-fit:cover;border-radius:10px}
+  .qr-t{font-size:15px;font-weight:700;color:var(--navy)}
+  .qr-s{font-size:12.5px;color:var(--muted);margin-top:3px;line-height:1.5}
+  .qr-s b{color:var(--accent);font-weight:700}
 
   footer{padding:32px 24px 56px;text-align:center;font-size:12.5px;color:var(--muted)}
   footer a{color:var(--ink-soft);border-bottom:1px solid var(--line)}
@@ -106,17 +112,12 @@
 <!-- A. DATA+AI 主线 -->
 <section>
   <div class="wrap">
-    <div class="sec-head"><h2>Data+AI 主线</h2><span class="en">Daily intelligence, refreshed every day</span></div>
+    <div class="sec-head"><h2>Data+AI 主线</h2><span class="en">Daily intelligence, curated</span></div>
     <p class="sec-note">每天在跑的持续产出——把行业信号压缩成可决策的内容。这是能力最直接的证据。</p>
     <div class="grid">
-      <a class="card" href="https://haiyangchenbj.github.io/data-ai-daily/">
-        <div class="ct"><span class="ic">📡</span>Data+AI 每日报告</div>
-        <div class="cd">全球 Data+AI 每日简报：技术、产品、厂商、行业动态的结构化日报。</div>
-        <div class="cm">haiyangchenbj.github.io/data-ai-daily →</div>
-      </a>
       <a class="card" href="https://haiyangchenbj.github.io/data-ai-intel/">
-        <div class="ct"><span class="ic">🧭</span>行业情报参考</div>
-        <div class="cd">Data+AI 行业情报镜像：每日情报、月刊、深度专题的常备参考库。</div>
+        <div class="ct"><span class="ic">🧭</span>行业情报</div>
+        <div class="cd">Data+AI 每日情报 + 月刊 + 深度专题的常备参考库，一个入口看全链路信号。</div>
         <div class="cm">haiyangchenbj.github.io/data-ai-intel →</div>
       </a>
       <a class="card" href="/report/">
@@ -128,6 +129,11 @@
         <div class="ct"><span class="ic">📚</span>论文影响力地图</div>
         <div class="cd">七期技术演化史：从 Transformer 到多模态，把 AI 的来路按拐点串起来。</div>
         <div class="cm">hai.bj.cn/papers →</div>
+      </a>
+      <a class="card" href="/ai-employee/">
+        <div class="ct"><span class="ic">🤖</span>AI 员工系列</div>
+        <div class="cd">边界层笔记 · AI 与生产实践：从聊天到上岗，AI 为什么还不是合格的"员工"。</div>
+        <div class="cm">hai.bj.cn/ai-employee →</div>
       </a>
     </div>
   </div>
@@ -168,12 +174,12 @@
   <div class="wrap">
     <div class="sec-head"><h2>关于 / 专业定位</h2><span class="en">Why me, for Data+AI in Europe</span></div>
     <div class="about">
-      <p>近 15 年大数据与 AI 产品的市场与品牌经验，近年聚焦 <strong>阿里云 与 腾讯云</strong> 的 Data+AI 产品线，负责品牌策略、产品故事、技术内容、分析师关系与行业传播。</p>
-      <p>在中国最复杂的数据体系里——十亿级用户规模、lakehouse + cloud-native、大型银行/券商数字化转型——做过 Data+AI 的产品叙事。这正是欧洲市场稀缺的履历。</p>
-      <p>核心不是"更聪明"，是"<strong>同样效果更便宜、同样信息更清晰</strong>"。最擅长的，是把工程语言翻译成商业语言，让 C-suite、分析师和生态伙伴在同一张图里对齐。</p>
+      <p>我是陈海洋（Benjie）。过去十五年，我在中国最复杂的数据体系里做同一件事：把 <strong>Data+AI 的技术语言，翻译成业务能用的决策语言</strong>。</p>
+      <p>从阿里云到腾讯云，我负责大数据与人工智能产品线的品牌策略、产品故事、技术内容与分析师关系——十亿级用户规模、lakehouse + cloud-native、大型银行与券商的数字化转型，都是我真正做过的叙事场景。我相信，同样的效果可以更便宜，同样的信息可以更清晰。</p>
+      <p>我同时是 Springer Nature 旗下期刊《<strong>Minds and Machines</strong>》（哲学 × AI × 认知科学交叉）的审稿人。这让我在谈 AI 时，习惯先问"凭什么可信""责任落在谁身上"——也是我写「边界层笔记」的底层视角。</p>
       <div class="skills">
         <span>战略叙事 / 定位</span><span>产品营销 PMM · GTM</span><span>技术内容翻译</span>
-        <span>分析师关系 (IDC/Gartner/信通院)</span><span>行业趋势 (Lakehouse/RAG/Agent)</span><span>中英跨文化转译</span>
+        <span>分析师关系 (IDC/Gartner/信通院)</span><span>行业趋势 (Lakehouse/RAG/Agent)</span><span>AI 伦理 / 可信 AI</span><span>中英跨文化转译</span>
       </div>
       <div class="stats">
         <div class="stat"><div class="n">51+</div><div class="l">公众号文章</div></div>
@@ -194,6 +200,13 @@
       <a href="https://github.com/haiyangchenbj">GitHub</a>
       <a href="https://www.linkedin.com/in/chenhaiyang/">LinkedIn</a>
       <a href="mailto:benjie.chen@outlook.com">benjie.chen@outlook.com</a>
+    </div>
+    <div class="qr-slot">
+      <div class="qr-box">📱</div>
+      <div>
+        <div class="qr-t">扫码关注「边界层笔记」</div>
+        <div class="qr-s">Data+AI 与 AI 伦理的每周笔记 · <b>公众号二维码待补充</b></div>
+      </div>
     </div>
   </div>
 </section>

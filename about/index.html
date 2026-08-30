@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>品牌故事 · 为什么叫边界层 — 边界层笔记</title>
+<meta name="description" content="边界层笔记的品牌故事：1904 年普朗特的流体力学隐喻，如何帮我们看清今天的 AI。内看技术变化，外看商业代价。">
+<style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  :root{
+    --li-bg:#f3f2ef; --card:#fff; --ink:#000000e6; --ink-soft:#00000099;
+    --blue:#0a66c2; --blue-hover:#004182; --blue-soft:#e8f0fe;
+    --line:#e0dfdc; --line-soft:#edebe7; --ink-2:#000000cc;
+  }
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue","PingFang SC","Microsoft YaHei",Arial,sans-serif;
+    font-size:15px;line-height:1.65;color:var(--ink);background:var(--li-bg);-webkit-font-smoothing:antialiased}
+  a{color:inherit;text-decoration:none}
+
+  .topbar{position:sticky;top:0;z-index:20;background:#fff;border-bottom:1px solid var(--line);height:52px;display:flex;align-items:center}
+  .topbar .wrap{max-width:920px;margin:0 auto;padding:0 20px;display:flex;align-items:center;justify-content:space-between;width:100%}
+  .brand{font-weight:800;font-size:16px;color:var(--blue);letter-spacing:.2px}
+  .back{font-size:13px;color:var(--blue);font-weight:600}
+  .back:hover{text-decoration:underline}
+
+  .wrap{max-width:920px;margin:0 auto;padding:0 20px}
+  main{padding:28px 0 8px}
+
+  .card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:32px 36px;margin-bottom:16px}
+  .sec-head{display:flex;align-items:baseline;gap:10px;margin-bottom:6px}
+  .sec-head h1{font-size:24px;font-weight:800;color:#000;line-height:1.3}
+  .sec-head .en{font-size:12px;color:var(--ink-soft);font-weight:500;letter-spacing:.03em}
+  .sec-sub{font-size:13.5px;color:var(--ink-soft);margin:0 0 24px}
+
+  .prose p{font-size:15px;color:var(--ink-2);line-height:1.9;margin-bottom:14px}
+  .prose strong{color:#000;font-weight:700}
+  .prose h2{font-size:17px;font-weight:800;color:#000;margin:28px 0 12px}
+  .prose blockquote{margin:20px 0;padding:14px 18px;border-left:3px solid var(--blue);background:var(--blue-soft);border-radius:0 8px 8px 0}
+  .prose blockquote p{margin:0;font-size:14.5px}
+  .prose .closer{margin-top:32px;padding-top:20px;border-top:1px solid var(--line-soft)}
+  .prose .closer p{margin:0;font-weight:600;color:#000}
+  .prose .closer .motto{font-size:14px;color:var(--ink-soft);font-weight:500;margin-top:6px}
+
+  .frame{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:18px 0 6px}
+  .frame .f{background:#fff;border:1px solid var(--line);border-radius:10px;padding:16px 18px}
+  .frame .f .fh{font-size:14.5px;font-weight:800;color:var(--blue);margin-bottom:6px}
+  .frame .f .fd{font-size:13px;color:var(--ink-soft);line-height:1.7}
+
+  footer{text-align:center;font-size:12px;color:var(--ink-soft);padding:22px 20px 40px}
+  footer a{color:var(--blue)}
+
+  @media(max-width:640px){
+    .card{padding:24px 20px}
+    .frame{grid-template-columns:1fr}
+    .sec-head h1{font-size:20px}
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="wrap">
+    <div class="brand">边界层笔记 · Coralyx Notes</div>
+    <a class="back" href="/">← 返回主页</a>
+  </div>
+</div>
+
+<main class="wrap">
+  <section class="card">
+    <div class="sec-head">
+      <h1>为什么叫边界层</h1>
+      <span class="en">Why "The Boundary Layer"</span>
+    </div>
+    <p class="sec-sub">品牌故事 · 边界层笔记</p>
+
+    <div class="prose">
+      <p>1904 年，德国物理学家路德维希·普朗特（Ludwig Prandtl）提出了流体力学里的一个概念：<strong>边界层（Boundary Layer）</strong>。</p>
+      <p>流体流过固体表面时，贴近壁面的流体速度为零，远离壁面的主流全速前进。两者之间，是一层极薄、速度梯度剧烈变化的区域。</p>
+      <p>普朗特的贡献不是发现了一种新流体，而是找到了一种<strong>拆解复杂问题的方法</strong>：把流场分成「边界层内」和「边界层外」，分别用不同的规则去理解。</p>
+
+      <p>这个号借用了这个隐喻。</p>
+      <p>写 AI 的人很多，但最常见的有两类：一类贴着技术写，离业务远；一类贴着业务写，说不清技术。而不做研究、不写代码、却必须依据 AI 做决策的人——产品、市场、战略——恰恰站在这两层之间。</p>
+      <p>所以这里的每篇文章，都按同一个习惯写：</p>
+
+      <div class="frame">
+        <div class="f">
+          <div class="fh">边界层内 · Inside the Layer</div>
+          <div class="fd">看技术本身发生了什么——架构、算法、算力，以及它们的代价。</div>
+        </div>
+        <div class="f">
+          <div class="fh">边界层外 · Outside the Layer</div>
+          <div class="fd">看这个变化对产品形态、成本结构、组织协作意味着什么。</div>
+        </div>
+      </div>
+
+      <blockquote><p>内看变化，外看代价。判断写在这两层的交界处。</p></blockquote>
+
+      <p>不追热点，不贩卖焦虑。热点会过时，拆解问题的方法可以复用。</p>
+
+      <div class="closer">
+        <p>保持真实，静默蜕变。</p>
+        <p class="motto">在交界地带，同行。</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  边界层笔记 · Coralyx Notes ｜ <a href="/">hai.bj.cn</a>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>科里自留地 · 把手弄脏的地方 — 边界层笔记</title>
+<meta name="description" content="科里自留地：主航道之外，把手弄脏、跟物理世界死磕的实录。开源部署、工具魔改评测、思考切片。每行字来自一手实践。">
+<style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  :root{
+    --li-bg:#f3f2ef; --card:#fff; --ink:#000000e6; --ink-soft:#00000099;
+    --blue:#0a66c2; --blue-hover:#004182; --blue-soft:#e8f0fe;
+    --line:#e0dfdc; --line-soft:#edebe7; --ink-2:#000000cc;
+  }
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue","PingFang SC","Microsoft YaHei",Arial,sans-serif;
+    font-size:15px;line-height:1.65;color:var(--ink);background:var(--li-bg);-webkit-font-smoothing:antialiased}
+  a{color:inherit;text-decoration:none}
+
+  .topbar{position:sticky;top:0;z-index:20;background:#fff;border-bottom:1px solid var(--line);height:52px;display:flex;align-items:center}
+  .topbar .wrap{max-width:920px;margin:0 auto;padding:0 20px;display:flex;align-items:center;justify-content:space-between;width:100%}
+  .brand{font-weight:800;font-size:16px;color:var(--blue);letter-spacing:.2px}
+  .back{font-size:13px;color:var(--blue);font-weight:600}
+  .back:hover{text-decoration:underline}
+
+  .wrap{max-width:920px;margin:0 auto;padding:0 20px}
+  main{padding:28px 0 8px}
+
+  .card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:32px 36px;margin-bottom:16px}
+  .sec-head{display:flex;align-items:baseline;gap:10px;margin-bottom:6px}
+  .sec-head h1{font-size:24px;font-weight:800;color:#000;line-height:1.3}
+  .sec-head .en{font-size:12px;color:var(--ink-soft);font-weight:500;letter-spacing:.03em}
+  .sec-sub{font-size:13.5px;color:var(--ink-soft);margin:0 0 24px}
+
+  .prose p{font-size:15px;color:var(--ink-2);line-height:1.9;margin-bottom:14px}
+  .prose strong{color:#000;font-weight:700}
+  .prose blockquote{margin:20px 0;padding:14px 18px;border-left:3px solid var(--blue);background:var(--blue-soft);border-radius:0 8px 8px 0}
+  .prose blockquote p{margin:0;font-size:14.5px}
+  .prose .closer{margin-top:32px;padding-top:20px;border-top:1px solid var(--line-soft)}
+  .prose .closer p{margin:0;font-weight:600;color:#000}
+
+  .grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin:20px 0 8px}
+  .tile{display:block;background:#fff;border:1px solid var(--line);border-radius:10px;padding:16px 18px;transition:.15s}
+  .tile:hover{border-color:var(--blue);box-shadow:0 2px 10px rgba(10,102,194,.12);transform:translateY(-1px)}
+  .tile .ti{font-size:20px;margin-bottom:6px}
+  .tile .tc{font-size:15px;font-weight:800;color:var(--blue)}
+  .tile .td{font-size:13px;color:var(--ink-soft);line-height:1.7;margin-top:5px}
+
+  footer{text-align:center;font-size:12px;color:var(--ink-soft);padding:22px 20px 40px}
+  footer a{color:var(--blue)}
+
+  @media(max-width:640px){
+    .card{padding:24px 20px}
+    .grid{grid-template-columns:1fr}
+    .sec-head h1{font-size:20px}
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="wrap">
+    <div class="brand">边界层笔记 · Coralyx Notes</div>
+    <a class="back" href="/">← 返回主页</a>
+  </div>
+</div>
+
+<main class="wrap">
+  <section class="card">
+    <div class="sec-head">
+      <h1>科里自留地</h1>
+      <span class="en">Coralyx's Lab</span>
+    </div>
+    <p class="sec-sub">把手弄脏，跟物理世界死磕</p>
+
+    <div class="prose">
+      <p>你好，我是科里（Coralyx）。</p>
+      <p>主航道的文章输出结构化的判断。这个页面是另一面：<strong>把手弄脏，跟具体的物理世界死磕。</strong></p>
+      <p>为什么需要这一面？</p>
+      <p>长期讨论宏大叙事，人容易悬空。PPT 上的架构图总是完备的，只有亲自打开终端、配置环境、面对一行行报错时，才能对底层现实保持敬畏。</p>
+    </div>
+
+    <div class="grid">
+      <div class="tile">
+        <div class="ti">🛠️</div>
+        <div class="tc">开源部署实录</div>
+        <div class="td">非工程师面对开源项目的踩坑、排障与调优。《OpenClaw 部署实录》</div>
+      </div>
+      <div class="tile">
+        <div class="ti">🧪</div>
+        <div class="tc">工具魔改评测</div>
+        <div class="td">自建「龙虾情报系统」与各类效能工具的真实体感，剔除公关修饰。</div>
+      </div>
+      <div class="tile">
+        <div class="ti">🧩</div>
+        <div class="tc">思考切片</div>
+        <div class="td">尚未收束为框架、但有探索价值的实验性想法。</div>
+      </div>
+    </div>
+
+    <div class="prose">
+      <p style="margin-top:20px">不保证绝对客观，但保证<strong>每行字来自一手实践</strong>。</p>
+
+      <blockquote><p>长跑时配速是否平稳，只有双脚最清楚。折腾技术也一样——概念再热，也需要落地度量。</p></blockquote>
+
+      <div class="closer">
+        <p>保持真实，静默蜕变。</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  边界层笔记 · Coralyx Notes ｜ <a href="/">hai.bj.cn</a>
+</footer>
+
+</body>
+</html>

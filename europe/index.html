@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<title>The Boundary Layer · Europe — Where Europe's AI Actually Stands</title>
+<meta name="description" content="Six accounts of Europe's AI: open source, industry, cloud, compute, language, geopolitics. One recurring grade — strong on the soft layers, weak on the hard ones. By Benjamin Chen (Coralyx).">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,"PingFang SC","Segoe UI",Roboto,sans-serif;font-size:15px;line-height:1.8;color:#333;background:#fafaf8;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+.hero{padding:48px 20px 40px;text-align:center;background:linear-gradient(180deg,#f4f3ef 0%,#fafaf8 100%);border-bottom:1px solid #e8e6e0}
+.hero .series{font-size:12px;font-weight:700;letter-spacing:2px;color:#c96f53;margin-bottom:10px}
+.hero h1{font-size:24px;font-weight:700;color:#1a3a5c;letter-spacing:.5px;margin-bottom:8px}
+.hero .sub{font-size:14px;color:#888;margin-bottom:6px}
+.hero .meta{font-size:12px;color:#aaa;margin-top:12px}
+.threads{max-width:640px;margin:24px auto 0;display:flex;justify-content:center;gap:16px;flex-wrap:wrap}
+.thread-tag{font-size:12px;padding:4px 14px;border-radius:20px;border:1px solid #d0ccc4;color:#666;background:#fff;cursor:default}
+.container{max-width:680px;margin:0 auto;padding:0 20px 60px}
+.timeline{position:relative;padding:32px 0 0}
+.timeline::before{content:"";position:absolute;left:20px;top:0;bottom:0;width:1px;background:#d0ccc4}
+.issue{position:relative;padding:0 0 40px 48px}
+.issue:last-child{padding-bottom:0}
+.dot{position:absolute;left:14px;top:6px;width:13px;height:13px;border-radius:50%;background:#1a3a5c;border:3px solid #fafaf8;z-index:1}
+.dot.overview{background:#c96f53}
+.issue-num{font-size:11px;font-weight:700;color:#1a3a5c;letter-spacing:1px;margin-bottom:2px}
+.issue-title{font-size:17px;font-weight:700;color:#1a3a5c;line-height:1.5;margin-bottom:4px}
+.issue-title a{border-bottom:1px solid transparent;transition:all .2s}
+.issue-title a:hover{color:#c96f53}
+.issue-sub{font-size:13px;color:#777;margin-bottom:10px}
+.issue-facts{font-size:13px;color:#555;line-height:1.7;padding:10px 14px;background:#f4f3ef;border-radius:8px;border-left:3px solid #1a3a5c;margin-bottom:8px}
+.issue-insight{font-size:14px;color:#444;line-height:1.7;padding:8px 0}
+.issue-insight strong{color:#1a3a5c;font-weight:600}
+.issue-link{display:inline-block;font-size:12px;color:#c96f53;margin-top:6px;border-bottom:1px solid #e0d0c8;padding-bottom:1px;transition:all .2s}
+.issue-link:hover{color:#a04a30;border-color:#c96f53}
+.issue-threads{margin-top:6px;display:flex;gap:8px;flex-wrap:wrap}
+.issue-threads span{font-size:11px;padding:2px 10px;border-radius:12px;border:1px solid #d0ccc4;color:#666}
+.cross-section{max-width:680px;margin:48px auto 0;padding:0 20px}
+.cross-section h2{font-size:18px;font-weight:700;color:#1a3a5c;padding-bottom:10px;border-bottom:2px solid #1a3a5c;margin-bottom:24px}
+.cross-card{padding:20px;border-radius:10px;border:1px solid #e0dcd4;margin-bottom:16px;background:#fff}
+.cross-card h3{font-size:15px;font-weight:700;margin-bottom:8px}
+.cross-card p{font-size:14px;color:#555;line-height:1.75}
+.cross-card .cc-tag{display:inline-block;font-size:11px;padding:2px 10px;border-radius:12px;margin-bottom:8px}
+.cc-soft{border:1px solid #5a7a9a;color:#5a7a9a}
+.cc-hard{border:1px solid #c96f53;color:#c96f53}
+.footer{max-width:680px;margin:48px auto 0;padding:0 20px 40px;text-align:center;font-size:12px;color:#aaa}
+.footer a{color:#888;border-bottom:1px solid #ddd}
+.footer a:hover{color:#1a3a5c}
+@media(min-width:600px){
+  .hero{padding:60px 40px 50px}
+  .hero h1{font-size:28px}
+  .container{padding:0 32px 80px}
+  .timeline::before{left:24px}
+  .issue{padding-left:56px}
+  .dot{left:17.5px}
+}
+@media(prefers-color-scheme:dark){
+  body{color:#ddd;background:#181a1b}
+  .hero{background:linear-gradient(180deg,#1e2022 0%,#181a1b 100%);border-color:#2a2d30}
+  .hero .series{color:#d08a70}
+  .hero h1{color:#a0c4e0}
+  .hero .sub{color:#888}
+  .hero .meta{color:#666}
+  .thread-tag{border-color:#444;color:#999;background:#222}
+  .timeline::before{background:#333}
+  .dot{background:#a0c4e0;border-color:#181a1b}
+  .issue-num{color:#a0c4e0}
+  .issue-title{color:#a0c4e0}
+  .issue-title a:hover{color:#d08a70}
+  .issue-sub{color:#777}
+  .issue-facts{color:#aaa;background:#1e2022;border-color:#a0c4e0}
+  .issue-insight{color:#bbb}
+  .issue-insight strong{color:#a0c4e0}
+  .cross-card{background:#1e2022;border-color:#333}
+  .cross-card h3{color:#ccc}
+  .cross-card p{color:#999}
+  .cross-section h2{color:#a0c4e0;border-color:#a0c4e0}
+  .footer{color:#666}
+  .footer a{color:#777;border-color:#333}
+}
+</style>
+</head>
+<body>
+<div class="hero">
+  <div class="series">THE BOUNDARY LAYER · EUROPE</div>
+  <h1>Where Europe's AI Actually Stands</h1>
+  <div class="sub">Six accounts: open source · industry · cloud · compute · language · geopolitics</div>
+  <div style="font-size:14px;color:#555;max-width:520px;margin:14px auto 0;line-height:1.75">Europe holds an EUV monopoly at one end of the AI stack and a frontier open-weight lab at the other — and almost nothing in between. Six pieces examine that gap, account by account. The grade comes out the same every time.</div>
+  <div class="threads">
+    <span class="thread-tag">Soft · rules, standards, context</span>
+    <span class="thread-tag">Hard · compute, chips, cloud</span>
+  </div>
+  <div class="meta">Benjamin Chen (Coralyx) &nbsp;|&nbsp; Jul – Sep 2026 &nbsp;|&nbsp; Published on LinkedIn</div>
+</div>
+
+<div class="container">
+<div class="timeline">
+
+<div class="issue">
+  <div class="dot overview"></div>
+  <div class="issue-num">THE OVERVIEW · SEP 21, 2026</div>
+  <div class="issue-title"><a href="https://www.linkedin.com/pulse/between-mistral-asml-where-europes-ai-actually-stands-benjamin-chen-6hz3c" target="_blank" rel="noopener">Between Mistral and ASML: Where Europe's AI Actually Stands</a></div>
+  <div class="issue-sub">The summary piece — six dimensions, one balance sheet</div>
+  <div class="issue-facts">Mistral borrowed $830M to buy 13,800 NVIDIA GB300s · the three US clouds hold ~70% of Europe's cloud market · Europe: 20% of AI compute demand, 3–5% of supply · DeepL wins 75 of 80 blind language tests · a Dutch minister shuttles between Washington and Beijing over one chip company</div>
+  <div class="issue-insight">Europe moved the battlefield to where it holds advantage — rules, compliance, data sovereignty — <strong>because it never planned to win the compute race</strong>. The gap between the two ends of its stack is the whole story.</div>
+  <a class="issue-link" href="https://www.linkedin.com/pulse/between-mistral-asml-where-europes-ai-actually-stands-benjamin-chen-6hz3c" target="_blank" rel="noopener">Read on LinkedIn →</a>
+  <div class="issue-threads"><span>All six accounts</span></div>
+</div>
+
+<div class="issue">
+  <div class="dot"></div>
+  <div class="issue-num">ACCOUNT ONE · OPEN SOURCE · JUL 27, 2026</div>
+  <div class="issue-title"><a href="https://www.linkedin.com/pulse/europes-strongest-ai-company-gives-its-best-model-away-benjamin-chen-7stac" target="_blank" rel="noopener">Europe's Strongest AI Company Gives Its Best Model Away. That's the Strategy.</a></div>
+  <div class="issue-sub">Mistral Large 3 under Apache 2.0 — open weights as a sovereignty play</div>
+  <div class="issue-facts">Mistral Large 3 released fully open-weight (675B total, 41B active MoE) · sovereignty is layered: open weights solve model sovereignty, not compute sovereignty · ASML led the €1.7B round at an €11.7B valuation · European buyers ask about exit before they ask about performance</div>
+  <div class="issue-insight">Europe rewrote the question from "whose model is strongest" to "whose AI is most controllable." <strong>It picked a table where it can win — with a ceiling.</strong> The premium on control lasts only as long as the capability gap stays acceptable.</div>
+  <a class="issue-link" href="https://www.linkedin.com/pulse/europes-strongest-ai-company-gives-its-best-model-away-benjamin-chen-7stac" target="_blank" rel="noopener">Read on LinkedIn →</a>
+  <div class="issue-threads"><span>Soft layer</span></div>
+</div>
+
+<div class="issue">
+  <div class="dot"></div>
+  <div class="issue-num">ACCOUNT TWO · INDUSTRY · SEP 1, 2026</div>
+  <div class="issue-title"><a href="https://www.linkedin.com/pulse/europes-industry-doesnt-want-ai-writes-poetry-benjamin-chen-mjmgc" target="_blank" rel="noopener">Europe's Industry Doesn't Want an AI That Writes Poetry</a></div>
+  <div class="issue-sub">Determinism first — Siemens, SAP, Celonis, and the industrial buyer</div>
+  <div class="issue-facts">Siemens Industrial Copilot generates PLC code ~60% faster, engineers still approve every line · SAP Joule reaches 34,000 customers · Celonis: $770M+ ARR, ~50–60% of the process-mining market · a chemical line cannot tolerate a hallucination the way a chat user can</div>
+  <div class="issue-insight">Europe's "lag" is a mirror of its economic structure: manufacturing and hidden champions buy reliability, not demos. <strong>The interface generates, the core stays deterministic.</strong> The risk is missing the next paradigm defined by raw model capability.</div>
+  <a class="issue-link" href="https://www.linkedin.com/pulse/europes-industry-doesnt-want-ai-writes-poetry-benjamin-chen-mjmgc" target="_blank" rel="noopener">Read on LinkedIn →</a>
+  <div class="issue-threads"><span>Soft layer</span><span>With a hard ceiling</span></div>
+</div>
+
+<div class="issue">
+  <div class="dot"></div>
+  <div class="issue-num">ACCOUNT THREE · CLOUD · SEP 8, 2026</div>
+  <div class="issue-title"><a href="https://www.linkedin.com/pulse/microsoft-france-europe-still-depends-us-cloud-benjamin-chen-idqoc" target="_blank" rel="noopener">Microsoft in France: Europe Still Depends on US Cloud</a></div>
+  <div class="issue-sub">Gaia-X, SecNumCloud, and the gap between paper and racks</div>
+  <div class="issue-facts">AWS + Microsoft + Google hold ~70% of Europe's cloud market; European vendors are down from ~29% (2017) to ~15% · Gaia-X, seven years in, now certifies the very hyperscalers it was built to counter · asked in the French Senate whether data could be shielded from US legal reach, a Microsoft France director answered: "No, I cannot guarantee" · CADA proposes four sovereignty assurance levels</div>
+  <div class="issue-insight">Data sovereignty is the most repeated phrase in Europe's AI narrative, <strong>and the gap between how it reads on paper and how it runs in the racks is structural, not an effort problem</strong>. Rules are Europe's strength; replacing a hyperscaler is an industrial problem.</div>
+  <a class="issue-link" href="https://www.linkedin.com/pulse/microsoft-france-europe-still-depends-us-cloud-benjamin-chen-idqoc" target="_blank" rel="noopener">Read on LinkedIn →</a>
+  <div class="issue-threads"><span>Hard layer</span></div>
+</div>
+
+<div class="issue">
+  <div class="dot"></div>
+  <div class="issue-num">ACCOUNT FOUR · COMPUTE · SEP 11, 2026</div>
+  <div class="issue-title"><a href="https://www.linkedin.com/pulse/europe-has-supercomputer-training-chips-benjamin-chen-h02rc" target="_blank" rel="noopener">Europe Has the Supercomputer, Not the Training Chips</a></div>
+  <div class="issue-sub">JUPITER goes exascale — on 24,000 American chips</div>
+  <div class="issue-facts">JUPITER hit 1 ExaFLOP (TOP500 #4, Nov 2025) — powered by ~24,000 NVIDIA GH200 · every EuroHPC AI partition runs NVIDIA or AMD · Intel cancelled Magdeburg: no sub-7nm fab in the EU before 2030 · ASML, Soitec and imec hold the keys to the stack — and no fab in Europe uses them · SiPearl's Rhea1 arrives five years late, and it is a CPU</div>
+  <div class="issue-insight">Europe can build the machine; the chips inside are American. <strong>Even if every AI gigafactory gets built, the silicon inside will still be NVIDIA's — and before 2028, Europe won't have a single indigenous commercial chip capable of frontier training.</strong></div>
+  <a class="issue-link" href="https://www.linkedin.com/pulse/europe-has-supercomputer-training-chips-benjamin-chen-h02rc" target="_blank" rel="noopener">Read on LinkedIn →</a>
+  <div class="issue-threads"><span>Hard layer</span></div>
+</div>
+
+<div class="issue">
+  <div class="dot"></div>
+  <div class="issue-num">ACCOUNT FIVE · LANGUAGE · SEP 15, 2026</div>
+  <div class="issue-title"><a href="https://www.linkedin.com/pulse/europes-language-wall-tax-moat-benjamin-chen-v9rnc" target="_blank" rel="noopener">Europe's Language Wall: A Tax and a Moat</a></div>
+  <div class="issue-sub">24 official languages — a fragmentation cost for entrants, a moat for locals</div>
+  <div class="issue-facts">~90% of Meta's Llama training corpus is English; German, French, Dutch each under 1% · DeepL won 75 of 80 blind test groups (94%) against GPT-5.2 and Google Translate · OpenEuroLLM: €37.4M, 32 languages, trained on EuroHPC · EuroLLM-22B covers 35 languages, fully open, trained on MareNostrum 5</div>
+  <div class="issue-insight">The wall keeps others out — but it guards context, not the ceiling. <strong>Language is Europe's defensive win: enough to live well inside its own linguistic world, not a card that flips the board.</strong> And the wall is getting lower.</div>
+  <a class="issue-link" href="https://www.linkedin.com/pulse/europes-language-wall-tax-moat-benjamin-chen-v9rnc" target="_blank" rel="noopener">Read on LinkedIn →</a>
+  <div class="issue-threads"><span>Soft layer</span></div>
+</div>
+
+<div class="issue">
+  <div class="dot"></div>
+  <div class="issue-num">ACCOUNT SIX · GEOPOLITICS · SEP 17, 2026</div>
+  <div class="issue-title"><a href="https://www.linkedin.com/pulse/nexperia-europes-ai-geopolitics-one-company-benjamin-chen-ty41c" target="_blank" rel="noopener">Nexperia: Europe's AI Geopolitics in One Company</a></div>
+  <div class="issue-sub">A Dutch chip firm, two superpowers, and the asymmetry of chokepoints</div>
+  <div class="issue-facts">The Netherlands froze Nexperia's global assets in Oct 2025 under a 1952 cold-war law — 70% of its output is packaged in China, and European car lines stopped within weeks · the EU imports 100% of its heavy rare earths and >90% of rare-earth processing from China · EU–China trade still reached $828.1B in 2025, up 5.4% · ~28% of European AI startups use Chinese open-weight models</div>
+  <div class="issue-insight">America holds the chokepoint above (equipment), China the one below (materials), and Europe's industry depends on both. <strong>"De-risking" is a patchy map, not a clean front — Europe is the third party buying room between two superpowers, paying in rules and balance.</strong></div>
+  <a class="issue-link" href="https://www.linkedin.com/pulse/nexperia-europes-ai-geopolitics-one-company-benjamin-chen-ty41c" target="_blank" rel="noopener">Read on LinkedIn →</a>
+  <div class="issue-threads"><span>The ledger closes</span></div>
+</div>
+
+</div>
+</div>
+
+<div class="cross-section">
+<h2>One grade, six times</h2>
+<div class="cross-card">
+  <span class="cc-tag cc-soft">What holds</span>
+  <h3 style="color:#5a7a9a">Strong on the soft, defensive layers</h3>
+  <p>Rules, standards, certification, local context, open weights, industrial reliability. Every account lands here: AI Act compliance as a sales asset, DeepL's 94%, EuroLLM's 35 languages, deterministic copilots that run inside audited control loops. These are real moats — they keep European customers in Europe.</p>
+</div>
+<div class="cross-card">
+  <span class="cc-tag cc-hard">What doesn't</span>
+  <h3 style="color:#c96f53">Weak on the hard, offensive layers</h3>
+  <p>Compute, chips, cloud, frontier models. 20% of demand against 3–5% of supply; 70% of the cloud owned by three US companies; no indigenous training chip before 2028; no sub-7nm fab before 2030. Rules can govern how others use AI inside Europe — they cannot build a European frontier model.</p>
+</div>
+</div>
+
+<div class="footer">
+  <a href="https://www.linkedin.com/in/chenhaiyang/recent-activity/articles/" target="_blank" rel="noopener">Benjamin Chen (Coralyx)</a> · The Boundary Layer &nbsp;|&nbsp; Europe series, 2026<br>
+  <span style="font-size:11px">Sister series: <a href="https://hai.bj.cn/papers/" target="_blank" rel="noopener">Paper Influence Map · 论文影响力地图</a> · 边界层笔记</span>
+</div>
+</body>
+</html>
